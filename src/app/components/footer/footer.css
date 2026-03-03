@@ -1,0 +1,130 @@
+.footer-section {
+  background-color: #0a0a0f; /* Un negro un pelín más oscuro que el fondo principal */
+  padding: 80px 5% 20px;
+  border-top: 1px solid rgba(138, 43, 226, 0.2); /* Línea morada sutil arriba */
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 40px;
+}
+
+.contact-info {
+  flex: 1;
+  min-width: 300px;
+}
+
+.footer-title {
+  font-size: 2.2rem;
+  color: var(--text-main);
+  margin-bottom: 15px;
+}
+
+.contact-info p {
+  color: var(--text-secondary);
+  margin-bottom: 25px;
+  font-size: 1.1rem;
+}
+
+.contact-list {
+  list-style: none;
+}
+
+.contact-list li {
+  color: var(--text-main);
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.contact-list a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-list a:hover {
+  color: var(--color-primary-hover);
+  text-decoration: underline;
+}
+
+.footer-actions {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Alineado a la derecha en PC */
+  min-width: 300px;
+  gap: 25px;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+}
+
+.social-btn {
+  padding: 10px 25px;
+  border: 1px solid var(--text-secondary);
+  color: var(--text-main);
+  text-decoration: none;
+  border-radius: var(--radius-medium);
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+  background-color: var(--text-main);
+  color: var(--bg-dark);
+}
+
+.cv-buttons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.btn-cv {
+  background-color: rgba(138, 43, 226, 0.1);
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  padding: 12px 20px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: var(--radius-medium);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-cv:hover {
+  background-color: var(--color-primary);
+  color: var(--text-main);
+  box-shadow: 0 0 15px rgba(138, 43, 226, 0.4);
+  transform: translateY(-3px);
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+/* Responsividad para móviles */
+@media (max-width: 768px) {
+  .footer-actions {
+    align-items: flex-start;
+  }
+  .cv-buttons {
+    justify-content: flex-start;
+  }
+}
