@@ -78,3 +78,7 @@
   .nav-links { display: none; } /* Podríamos añadir un menú hamburguesa luego */
   .navbar-container { justify-content: center; }
 }
+.lang-switch { display: flex; align-items: center; gap: 5px; margin-left: 10px; }
+.lang-switch button { background: none; border: none; color: var(--text-secondary); cursor: pointer; font-weight: bold; transition: 0.3s; }
+.lang-switch button.active { color: var(--color-primary); }
+.divider { color: var(--text-secondary); font-size: 0.8rem; }

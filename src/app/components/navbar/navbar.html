@@ -12,5 +12,10 @@
       <li><a href="#skills" class="nav-item">Skills</a></li>
       <li><a href="#contact" class="nav-item contact-link">Contact</a></li>
     </ul>
+    <li class="lang-switch">
+  <button (click)="changeLang('en')" [class.active]="(langService.currentLanguage$ | async) === 'en'">EN</button>
+  <span class="divider">|</span>
+  <button (click)="changeLang('es')" [class.active]="(langService.currentLanguage$ | async) === 'es'">ES</button>
+</li>
   </div>
 </nav>
