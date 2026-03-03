@@ -1,0 +1,24 @@
+:root {
+  /* Paleta de colores */
+  --bg-dark: #121212; /* Negro mate para el fondo */
+  --bg-card: #1e1e24; /* Un gris muy oscuro para las tarjetas de proyectos */
+  --color-primary: #8a2be2; /* Morado vibrante */
+  --color-primary-hover: #a052ff; /* Morado más claro para cuando pases el mouse */
+  --text-main: #f0f0f0; /* Blanco suave para que no canse la vista */
+  --text-secondary: #a0a0a0; /* Gris para textos menos importantes */
+  
+  /* Formas */
+  --radius-medium: 8px; /* Bordes redondeados pero no exagerados */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

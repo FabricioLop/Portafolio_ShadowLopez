@@ -1,0 +1,54 @@
+.hero-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ocupa toda la pantalla */
+  background: radial-gradient(circle at top, #1a1a24 0%, var(--bg-dark) 70%); /* Fondo dinámico sutil */
+}
+
+.hero-content {
+  text-align: center;
+}
+
+/* Efecto de máquina de escribir */
+.dev-title {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 3.5rem;
+  color: var(--color-primary);
+  margin-bottom: 10px;
+}
+
+.cursor {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  margin-bottom: 30px;
+}
+
+/* Botón con efecto dinámico */
+.btn-dynamic {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: var(--radius-medium);
+  cursor: pointer;
+  transition: all 0.3s ease; /* Transición suave */
+  box-shadow: 0 0 10px rgba(138, 43, 226, 0.2);
+}
+
+.btn-dynamic:hover {
+  background-color: var(--color-primary);
+  color: var(--text-main);
+  box-shadow: 0 0 20px rgba(138, 43, 226, 0.6); /* Brillo al pasar el mouse */
+  transform: translateY(-3px); /* Se levanta un poquito */
+}
