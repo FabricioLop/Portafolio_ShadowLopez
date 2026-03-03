@@ -1,21 +1,21 @@
 .about-section {
   padding: 100px 5%;
   background-color: var(--bg-dark);
+  overflow: hidden; /* Evita que las animaciones generen scroll horizontal */
 }
 
 .about-container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 40px;
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 
-.about-text {
-  flex: 1;
-  min-width: 300px;
+.about-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .section-title {
@@ -28,36 +28,83 @@
   color: var(--color-primary);
 }
 
-.about-text p {
+.lead-text {
   color: var(--text-secondary);
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   line-height: 1.8;
-  margin-bottom: 15px;
 }
 
-.about-image-container {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  min-width: 300px;
+/* --- BENTO GRID (Las Tarjetas) --- */
+.about-bento-grid {
+  display: grid;
+  /* En móviles se verá de 1 columna, y en pantallas de más de 768px pasará a 2 columnas exactas */
+  grid-template-columns: 1fr;
+  gap: 25px;
+  margin-top: 20px;
 }
 
-.image-placeholder {
-  width: 300px;
-  height: 300px;
+@media (min-width: 768px) {
+  .about-bento-grid {
+    grid-template-columns: repeat(2, 1fr); /* Crea una cuadrícula perfecta de 2x2 */
+  }
+}
+
+.bento-card {
   background-color: var(--bg-card);
-  border: 2px dashed var(--color-primary);
+  padding: 30px;
   border-radius: var(--radius-medium);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--text-secondary);
-  font-family: 'Courier New', Courier, monospace;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex-direction: column;
+  gap: 15px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  z-index: 1;
 }
 
-.image-placeholder:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(138, 43, 226, 0.2);
+.bento-icon {
+  font-size: 2.5rem;
 }
+
+.bento-card h3 {
+  color: var(--text-main);
+  font-size: 1.3rem;
+}
+
+.bento-card p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* --- ANIMACIONES --- */
+
+/* 1. Entrada desde abajo */
+.slide-in {
+  animation: slideUp 1s ease-out forwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 2. Brillo y elevación al pasar el mouse (Hover) */
+.hover-glow:hover {
+  transform: translateY(-10px) scale(1.02);
+  border-color: var(--color-primary);
+  box-shadow: 0 15px 35px rgba(138, 43, 226, 0.2);
+  z-index: 2;
+}
+
+/* 3. Retrasos para que las tarjetas aparezcan en cascada */
+.delay-1 { animation: slideUp 1s ease-out 0.2s both; }
+.delay-2 { animation: slideUp 1s ease-out 0.4s both; }
+.delay-3 { animation: slideUp 1s ease-out 0.6s both; }
+.delay-4 { animation: slideUp 1s ease-out 0.8s both; }

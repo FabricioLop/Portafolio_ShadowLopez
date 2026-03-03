@@ -1,10 +1,35 @@
 <app-navbar></app-navbar>
 <main class="hero-section">
-  <div class="hero-content">
-    <h1 class="dev-title">&gt; Hola, soy Fabricio<span class="cursor">_</span></h1>
-    <p class="subtitle">Software Engineer | Backend & Full Stack</p>
+  <div class="hero-container">
     
-    <button class="btn-dynamic">Ver mis proyectos</button>
+    <div class="hero-text slide-in-left">
+<h1 class="dev-title">&gt; Hola, soy <span class="highlight">Fabricio</span><span class="cursor">_</span></h1>      <h2 class="nickname">&lt;ShadowLopez /&gt;</h2>
+      <p class="subtitle">Software Engineer | Backend & Full Stack</p>
+      
+      <div class="hero-buttons">
+        <a href="#projects" class="btn-dynamic">Ver mis proyectos</a>
+        <a href="#contact" class="btn-outline">Contactarme</a>
+      </div>
+    </div>
+
+    <div class="hero-visual slide-in-right">
+      <div class="terminal-window floating-anim">
+        <div class="terminal-header">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="terminal-title">shadow_env ~ bash</span>
+        </div>
+        <div class="terminal-body">
+          <p class="type-line delay-1"><span class="prompt">$</span> init_system --user ShadowLopez</p>
+          <p class="type-line delay-2"><span class="output">&gt; Cargando entorno de desarrollo...</span></p>
+          <p class="type-line delay-3"><span class="output">&gt; [OK] Lógica de negocio verificada.</span></p>
+          <p class="type-line delay-4"><span class="output">&gt; [OK] Arquitectura Backend lista.</span></p>
+          <p class="type-line delay-5"><span class="prompt">$</span> await connection<span class="cursor">_</span></p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </main>
 <app-about></app-about>

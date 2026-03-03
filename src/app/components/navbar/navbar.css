@@ -1,40 +1,80 @@
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem 5%;
-  background-color: rgba(18, 18, 18, 0.85); /* Negro transparente */
-  backdrop-filter: blur(10px); /* Efecto cristal/desenfoque */
-  position: fixed; /* Lo fijamos arriba */
-  top: 0;
+.navbar-wrapper {
+  position: fixed;
+  top: 20px;
   left: 0;
   width: 100%;
   z-index: 1000;
+  display: flex;
+  justify-content: center;
+  pointer-events: none; /* Permite que el wrapper no bloquee clics */
 }
 
-.logo-text {
+.navbar-container {
+  pointer-events: auto; /* Los clics funcionan dentro de la barra */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  width: 90%;
+  max-width: 1100px;
+  background: rgba(18, 18, 24, 0.7);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(138, 43, 226, 0.2);
+  border-radius: 50px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: all 0.4s ease;
+}
+
+.navbar-container:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 10px 40px rgba(138, 43, 226, 0.2);
+}
+
+.logo-name {
+  color: var(--text-main);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.logo-code {
   color: var(--color-primary);
-  font-weight: bold;
-  font-size: 1.8rem;
-  font-family: 'Courier New', Courier, monospace;
-  cursor: pointer;
+  font-weight: 800;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 2.5rem;
+  gap: 15px;
+  align-items: center;
 }
 
-.nav-links a {
-  color: var(--text-main);
+.nav-item {
+  color: var(--text-secondary);
   text-decoration: none;
+  font-size: 0.95rem;
+  padding: 8px 15px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
   font-weight: 500;
-  font-size: 1.1rem;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
-.nav-links a:hover {
-  color: var(--color-primary-hover);
-  text-shadow: 0 0 8px rgba(138, 43, 226, 0.5); /* Brillo sutil */
+.nav-item:hover {
+  color: var(--text-main);
+  background: rgba(138, 43, 226, 0.1);
+}
+
+.contact-link {
+  background: var(--color-primary);
+  color: white !important;
+  box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+}
+
+.contact-link:hover {
+  background: var(--color-primary-hover) !important;
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; } /* Podríamos añadir un menú hamburguesa luego */
+  .navbar-container { justify-content: center; }
 }
