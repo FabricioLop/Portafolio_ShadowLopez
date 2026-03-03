@@ -1,0 +1,40 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 5%;
+  background-color: rgba(18, 18, 18, 0.85); /* Negro transparente */
+  backdrop-filter: blur(10px); /* Efecto cristal/desenfoque */
+  position: fixed; /* Lo fijamos arriba */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.logo-text {
+  color: var(--color-primary);
+  font-weight: bold;
+  font-size: 1.8rem;
+  font-family: 'Courier New', Courier, monospace;
+  cursor: pointer;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2.5rem;
+}
+
+.nav-links a {
+  color: var(--text-main);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--color-primary-hover);
+  text-shadow: 0 0 8px rgba(138, 43, 226, 0.5); /* Brillo sutil */
+}
