@@ -25,3 +25,64 @@ body {
 html {
   scroll-behavior: smooth;
 }
+/* =============================================
+   LIGHT MODE — toggle via data-theme="light"
+   ============================================= */
+[data-theme="light"] {
+  --bg-dark:             #f4f4f8;
+  --bg-card:             #ffffff;
+  --color-primary:       #7b22d4;
+  --color-primary-hover: #9a45f5;
+  --text-main:           #1a1a2e;
+  --text-secondary:      #555577;
+}
+
+[data-theme="light"] body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+}
+
+[data-theme="light"] .navbar-container {
+  background: rgba(240,240,248,0.85);
+  border-color: rgba(123,34,212,0.2);
+}
+
+[data-theme="light"] .terminal-window,
+[data-theme="light"] .terminal-body {
+  background: #1a1a2e;
+}
+
+[data-theme="light"] .tech-badge {
+  background: rgba(123,34,212,0.07);
+  color: var(--text-main);
+  border-color: rgba(123,34,212,0.15);
+}
+
+[data-theme="light"] .bento-card,
+[data-theme="light"] .project-card,
+[data-theme="light"] .skill-box,
+[data-theme="light"] .accordion-item,
+[data-theme="light"] .timeline-card,
+[data-theme="light"] .stats-bar {
+  background: #ffffff;
+  border-color: rgba(123,34,212,0.1);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+[data-theme="light"] .form-input {
+  background: #f0f0f8;
+  border-color: rgba(123,34,212,0.2);
+  color: var(--text-main);
+}
+
+[data-theme="light"] .footer-section {
+  background: #eaeaf2;
+}
+
+[data-theme="light"] .mobile-menu {
+  background: rgba(240,240,248,0.98);
+}
+
+[data-theme="light"] .mobile-menu a {
+  color: var(--text-secondary);
+}

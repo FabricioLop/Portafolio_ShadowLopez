@@ -1,0 +1,36 @@
+<section id="timeline" class="timeline-section">
+  <div class="timeline-header slide-in">
+    <h2 class="section-title">{{ ts.t().timeline.title }} <span class="highlight">{{ ts.t().timeline.title_highlight }}</span></h2>
+    <p class="timeline-subtitle">{{ ts.t().timeline.subtitle }}</p>
+  </div>
+
+  <div class="timeline-track">
+    @for (item of items; track item.titleKey; let i = $index) {
+      <div class="timeline-item" [class.right]="i % 2 !== 0">
+        <div class="timeline-connector">
+          <div class="tl-dot" [class]="item.type">{{ item.icon }}</div>
+        </div>
+
+        <div class="timeline-card hover-glow" [class]="item.type">
+          <div class="card-meta">
+            <span class="tl-badge" [class]="item.type">{{ getTypeLabel(item.type) }}</span>
+            <span class="tl-year">{{ item.year }}</span>
+          </div>
+          <h3 class="tl-title">{{ getTitle(item.titleKey) }}</h3>
+          <p class="tl-place">{{ getPlace(item.placeKey) }}</p>
+          <p class="tl-desc">{{ getDesc(item.descKey) }}</p>
+
+          <div class="tl-footer">
+            @if (item.status) {
+              <span class="tl-status" [class]="item.status">{{ getStatusLabel(item.status) }}</span>
+            }
+            @if (item.link) {
+              <a [href]="item.link" target="_blank" rel="noopener" class="tl-link">↗ Ver</a>
+            }
+          </div>
+        </div>
+      </div>
+    }
+    <div class="center-line"></div>
+  </div>
+</section>

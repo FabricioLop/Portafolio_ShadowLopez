@@ -1,0 +1,260 @@
+.timeline-section {
+  padding: 100px 5%;
+  background-color: var(--bg-dark);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.timeline-header {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.section-title { font-size: 2.5rem; color: var(--text-main); margin-bottom: 10px; }
+.highlight { color: var(--color-primary); }
+.timeline-subtitle { color: var(--text-secondary); font-size: 1.1rem; }
+
+/* --- Track (zigzag layout) --- */
+.timeline-track {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Vertical center line */
+.center-line {
+  position: absolute;
+  left: 50%;
+  top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, rgba(138,43,226,0.4) 10%, rgba(138,43,226,0.4) 90%, transparent);
+  transform: translateX(-50%);
+}
+
+/* --- Individual item --- */
+.timeline-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 50px;
+  position: relative;
+}
+
+/* Left items: card on left, dot center */
+.timeline-item:not(.right) {
+  flex-direction: row;
+  padding-right: calc(50% + 30px);
+}
+
+/* Right items: card on right, dot center */
+.timeline-item.right {
+  flex-direction: row-reverse;
+  padding-left: calc(50% + 30px);
+}
+
+/* --- Connector dot --- */
+.timeline-connector {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.tl-dot {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  border: 2px solid rgba(138,43,226,0.3);
+  background: var(--bg-card);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.tl-dot.education { border-color: #4285F4; box-shadow: 0 0 12px rgba(66,133,244,0.3); }
+.tl-dot.cert      { border-color: #27c93f; box-shadow: 0 0 12px rgba(39,201,63,0.3); }
+.tl-dot.project   { border-color: var(--color-primary); box-shadow: 0 0 12px rgba(138,43,226,0.3); }
+
+/* --- Card --- */
+.timeline-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius-medium);
+  padding: 22px 24px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.timeline-card.education { border-left: 3px solid #4285F4; }
+.timeline-card.cert      { border-left: 3px solid #27c93f; }
+.timeline-card.project   { border-left: 3px solid var(--color-primary); }
+
+.timeline-item.right .timeline-card {
+  border-left: none;
+}
+.timeline-item.right .timeline-card.education { border-right: 3px solid #4285F4; }
+.timeline-item.right .timeline-card.cert      { border-right: 3px solid #27c93f; }
+.timeline-item.right .timeline-card.project   { border-right: 3px solid var(--color-primary); }
+
+.hover-glow:hover {
+  transform: translateY(-4px);
+  border-color: rgba(138,43,226,0.35);
+  box-shadow: 0 10px 30px rgba(138,43,226,0.12);
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tl-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tl-badge.education { background: rgba(66,133,244,0.15); color: #4285F4; border: 1px solid rgba(66,133,244,0.3); }
+.tl-badge.cert      { background: rgba(39,201,63,0.12); color: #27c93f; border: 1px solid rgba(39,201,63,0.3); }
+.tl-badge.project   { background: rgba(138,43,226,0.12); color: var(--color-primary); border: 1px solid rgba(138,43,226,0.3); }
+
+.tl-year {
+  font-family: 'Courier New', monospace;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.tl-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.tl-place {
+  font-size: 0.85rem;
+  color: var(--color-primary);
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.tl-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.tl-link {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-decoration: none;
+  padding: 4px 12px;
+  border: 1px solid rgba(138,43,226,0.35);
+  border-radius: 20px;
+  transition: all 0.25s ease;
+}
+
+.tl-link:hover {
+  background: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(138,43,226,0.45);
+}
+
+/* slide-in animation */
+.slide-in { animation: slideIn 0.7s ease forwards; }
+@keyframes slideIn { from { opacity:0; transform: translateY(30px); } to { opacity:1; transform: translateY(0); } }
+
+/* --- Responsive: single column on mobile --- */
+@media (max-width: 768px) {
+  .center-line { left: 24px; }
+
+  .timeline-item:not(.right),
+  .timeline-item.right {
+    flex-direction: column;
+    padding: 0 0 0 60px;
+  }
+
+  .timeline-connector {
+    left: 24px;
+    top: 0;
+  }
+
+  .timeline-card.education,
+  .timeline-card.cert,
+  .timeline-card.project {
+    border-left: none !important;
+    border-right: none !important;
+    border-top: 3px solid;
+  }
+
+  .timeline-card.education { border-top-color: #4285F4; }
+  .timeline-card.cert      { border-top-color: #27c93f; }
+  .timeline-card.project   { border-top-color: var(--color-primary); }
+}
+
+/* Status chips inside timeline cards */
+.tl-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+.tl-status {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+.tl-status.live    { background: rgba(39,201,63,0.12);  color: #27c93f; border: 1px solid rgba(39,201,63,0.3); }
+.tl-status.wip     { background: rgba(255,180,0,0.12);  color: #ffb400; border: 1px solid rgba(255,180,0,0.3); }
+.tl-status.pending { background: rgba(100,180,255,0.1); color: #64b4ff; border: 1px solid rgba(100,180,255,0.3); }
+
+/* --- Status + footer row --- */
+.tl-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.tl-status {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+.tl-status.live {
+  background: rgba(39,201,63,0.12);
+  color: #27c93f;
+  border: 1px solid rgba(39,201,63,0.3);
+}
+
+.tl-status.inprogress {
+  background: rgba(255,180,0,0.12);
+  color: #ffb400;
+  border: 1px solid rgba(255,180,0,0.3);
+}
+
+.tl-status.pending {
+  background: rgba(100,180,255,0.1);
+  color: #64b4ff;
+  border: 1px solid rgba(100,180,255,0.3);
+}

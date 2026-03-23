@@ -1,0 +1,48 @@
+<section id="certificates" class="certs-section">
+  <div class="certs-header slide-in">
+    <h2 class="section-title">{{ ts.t().certificates.title }} <span class="highlight">{{ ts.t().certificates.title_highlight }}</span></h2>
+    <p class="certs-subtitle">{{ ts.t().certificates.subtitle }}</p>
+    <div class="certs-counter">
+      <span class="counter-number">{{ totalCerts }}</span>
+      <span class="counter-label">{{ ts.t().certificates.obtained }}</span>
+    </div>
+  </div>
+
+  <div class="certs-accordion">
+    @for (cat of categories; track cat.title; let i = $index) {
+      <div class="accordion-item hover-glow" [class.is-open]="openCategory() === i" [style.--cat-color]="cat.color">
+        <button class="accordion-header" (click)="toggle(i)">
+          <div class="accordion-left">
+            <span class="cat-icon">{{ cat.icon }}</span>
+            <div class="cat-info">
+              <span class="cat-title">{{ cat.title }}</span>
+              <span class="cat-issuer">{{ cat.issuer }}</span>
+            </div>
+          </div>
+          <div class="accordion-right">
+            <span class="cert-count">{{ cat.certs.length }} certs</span>
+            <span class="chevron">{{ openCategory() === i ? '▲' : '▼' }}</span>
+          </div>
+        </button>
+        <div class="accordion-body">
+          <ul class="cert-list">
+            @for (cert of cat.certs; track cert.name) {
+              <li class="cert-item">
+                <div class="cert-item-left">
+                  <span class="cert-dot"></span>
+                  <span class="cert-name">{{ cert.name }}</span>
+                </div>
+                <div class="cert-item-right">
+                  <span class="cert-date">{{ cert.issued }}</span>
+                  <a [href]="cert.verifyUrl" target="_blank" rel="noopener noreferrer" class="verify-btn">
+                    {{ ts.t().certificates.verify }}
+                  </a>
+                </div>
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+    }
+  </div>
+</section>

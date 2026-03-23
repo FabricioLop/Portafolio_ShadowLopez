@@ -1,0 +1,298 @@
+/* =============================================
+   CERTIFICATES SECTION
+   Matches the existing dark/purple design system
+   ============================================= */
+
+.certs-section {
+  padding: 100px 5%;
+  background-color: var(--bg-dark);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* --- Header --- */
+.certs-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: var(--text-main);
+  margin-bottom: 10px;
+}
+
+.highlight {
+  color: var(--color-primary);
+}
+
+.certs-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+}
+
+/* Counter badge */
+.certs-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(138, 43, 226, 0.1);
+  border: 1px solid rgba(138, 43, 226, 0.35);
+  padding: 10px 24px;
+  border-radius: 30px;
+}
+
+.counter-number {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--color-primary);
+  font-family: 'Courier New', Courier, monospace;
+  line-height: 1;
+}
+
+.counter-label {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* --- Accordion wrapper --- */
+.certs-accordion {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* --- Single accordion card --- */
+.accordion-item {
+  background-color: var(--bg-card);
+  border-radius: var(--radius-medium);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.accordion-item.hover-glow:hover,
+.accordion-item.is-open {
+  border-color: var(--cat-color, var(--color-primary));
+  box-shadow: 0 8px 30px color-mix(in srgb, var(--cat-color, var(--color-primary)) 20%, transparent);
+}
+
+/* Left colored accent bar */
+.accordion-item::before {
+  content: '';
+  display: block;
+  height: 3px;
+  background: var(--cat-color, var(--color-primary));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.accordion-item.is-open::before,
+.accordion-item:hover::before {
+  opacity: 1;
+}
+
+/* --- Accordion button (header) --- */
+.accordion-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 28px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-main);
+  text-align: left;
+  gap: 16px;
+}
+
+.accordion-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.cat-icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+
+.cat-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cat-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.cat-issuer {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.accordion-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.cert-count {
+  font-size: 0.82rem;
+  background: rgba(138, 43, 226, 0.15);
+  color: var(--color-primary);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+  border: 1px solid rgba(138, 43, 226, 0.25);
+}
+
+.chevron {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  transition: color 0.3s;
+}
+
+.accordion-item.is-open .chevron {
+  color: var(--color-primary);
+}
+
+/* --- Accordion body (collapsible) --- */
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accordion-item.is-open .accordion-body {
+  max-height: 800px;
+}
+
+/* --- Certificate list --- */
+.cert-list {
+  list-style: none;
+  padding: 0 28px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.cert-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  flex-wrap: wrap;
+}
+
+.cert-item:last-child {
+  border-bottom: none;
+}
+
+.cert-item-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.cert-dot {
+  width: 7px;
+  height: 7px;
+  background-color: var(--cat-color, var(--color-primary));
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 6px var(--cat-color, var(--color-primary));
+}
+
+.cert-name {
+  color: var(--text-main);
+  font-size: 0.95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cert-item-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.cert-date {
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-family: 'Courier New', monospace;
+  white-space: nowrap;
+}
+
+.verify-btn {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-decoration: none;
+  padding: 4px 12px;
+  border: 1px solid rgba(138, 43, 226, 0.35);
+  border-radius: 20px;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.verify-btn:hover {
+  background-color: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(138, 43, 226, 0.45);
+  transform: translateY(-1px);
+}
+
+/* --- Slide-in animation (same as other sections) --- */
+.slide-in {
+  animation: slideIn 0.7s ease forwards;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Responsive --- */
+@media (max-width: 600px) {
+  .accordion-header {
+    padding: 18px 18px;
+  }
+
+  .cert-list {
+    padding: 0 18px 18px;
+  }
+
+  .cert-name {
+    white-space: normal;
+  }
+
+  .cert-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .cert-item-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .certs-counter {
+    flex-direction: column;
+    gap: 4px;
+  }
+}

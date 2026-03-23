@@ -1,0 +1,27 @@
+<div class="splash-overlay" [class.hiding]="hiding()">
+  <div class="splash-terminal">
+    <div class="splash-header">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+      <span class="splash-title">shadow_env ~ bash</span>
+    </div>
+    <div class="splash-body">
+      <p class="splash-line prompt-line" [class.visible]="line1().length > 0">
+        <span class="prompt">$</span> {{ line1() }}<span class="cursor" [class.hide]="line2().length > 0">_</span>
+      </p>
+      <p class="splash-line output-line" [class.visible]="line2().length > 0">
+        {{ line2() }}<span class="cursor" [class.hide]="line3().length > 0">_</span>
+      </p>
+      <p class="splash-line output-line" [class.visible]="line3().length > 0">
+        {{ line3() }}<span class="cursor" [class.hide]="line4().length > 0">_</span>
+      </p>
+      <p class="splash-line success-line" [class.visible]="line4().length > 0">
+        {{ line4() }}<span class="cursor">_</span>
+      </p>
+    </div>
+    @if (showSkip()) {
+      <p class="skip-hint">{{ ts.t().splash.skip }}</p>
+    }
+  </div>
+</div>

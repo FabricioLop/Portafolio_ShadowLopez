@@ -1,39 +1,99 @@
 <section id="about" class="about-section">
   <div class="about-container">
-    
+
     <div class="about-header slide-in">
-      <h2 class="section-title">Sobre <span class="highlight">Mí</span></h2>
-      <p class="lead-text">
-        Soy un estudiante de 21 años de la carrera de Ingeniería de Software en la <strong>UPC</strong> (Universidad Peruana de Ciencias Aplicadas). Me apasiona transformar ideas complejas en productos reales, eficientes y escalables, participando en todo el ciclo de vida del desarrollo.
-      </p>
+      <h2 class="section-title">{{ ts.t().about.title }} <span class="highlight">{{ ts.t().about.title_highlight }}</span></h2>
     </div>
 
-    <div class="about-bento-grid">
-      
-      <div class="bento-card hover-glow delay-1">
-        <span class="bento-icon">🎯</span>
-        <h3>Mi Visión</h3>
-        <p>Consolidarme en el desarrollo Backend con miras a ser Full Stack integral. Me atraen los retos arquitectónicos, las prácticas DevOps y la ciberseguridad.</p>
+    <div class="about-main-grid">
+
+      <!-- Columna izquierda -->
+      <div class="about-left slide-in-left">
+        <div class="avatar-wrapper">
+          <div class="avatar-ring">
+            <img src="assets/image.png" alt="Fabricio Lopez" class="avatar-img" />
+          </div>
+          <div class="avatar-badge">
+            <span class="pulse-dot"></span> {{ ts.t().about.available }}
+          </div>
+        </div>
+
+        <div class="interests-block">
+          <p class="interests-label">{{ ts.t().about.interests_label }}</p>
+          <div class="chips">
+            <span class="chip">☕ Iced Latte</span>
+            <span class="chip">🎮 Anime</span>
+            <span class="chip">💪 Gym</span>
+            <span class="chip">📚 Lectura</span>
+            <span class="chip">⚙️ Tech</span>
+            <span class="chip">♟️ Estrategia</span>
+          </div>
+        </div>
+
+        <div class="learning-block">
+          <p class="learning-label">{{ ts.t().about.learning_label }}</p>
+          <div class="learning-tags">
+            <span class="learning-tag">🔐 DevSecOps</span>
+            <span class="learning-tag">☁️ AWS Solutions Architect</span>
+            <span class="learning-tag">🤖 AI Engineering</span>
+          </div>
+        </div>
       </div>
 
-      <div class="bento-card hover-glow delay-2">
-        <span class="bento-icon">💡</span>
-        <h3>Valor de Negocio</h3>
-        <p>No solo escribo código; entiendo el ecosistema. Aplico análisis de datos y finanzas para asegurar que el software aporte valor real y estratégico.</p>
-      </div>
+      <!-- Columna derecha -->
+      <div class="about-right slide-in-right">
+        <p class="lead-text">{{ ts.t().about.lead }}</p>
 
-      <div class="bento-card hover-glow delay-3">
-        <span class="bento-icon">🚀</span>
-        <h3>Filosofía de Trabajo</h3>
-        <p>Disfruto enormemente el trabajo en equipo ágil. Mantengo una actitud entusiasta y de aprendizaje continuo frente a las nuevas tecnologías y desafíos.</p>
+        <div class="about-bento-grid">
+          <div class="bento-card hover-glow delay-1">
+            <div class="bento-card-accent"></div>
+            <span class="bento-icon">🎯</span>
+            <h3>{{ ts.t().about.vision_title }}</h3>
+            <p>{{ ts.t().about.vision_desc }}</p>
+          </div>
+          <div class="bento-card hover-glow delay-2">
+            <div class="bento-card-accent" style="background:#4285F4"></div>
+            <span class="bento-icon">💡</span>
+            <h3>{{ ts.t().about.value_title }}</h3>
+            <p>{{ ts.t().about.value_desc }}</p>
+          </div>
+          <div class="bento-card hover-glow delay-3">
+            <div class="bento-card-accent" style="background:#27c93f"></div>
+            <span class="bento-icon">🚀</span>
+            <h3>{{ ts.t().about.philosophy_title }}</h3>
+            <p>{{ ts.t().about.philosophy_desc }}</p>
+          </div>
+          <div class="bento-card hover-glow delay-4">
+            <div class="bento-card-accent" style="background:#FF6D00"></div>
+            <span class="bento-icon">♟️</span>
+            <h3>{{ ts.t().about.discipline_title }}</h3>
+            <p>{{ ts.t().about.discipline_desc }}</p>
+          </div>
+        </div>
       </div>
+    </div>
 
-      <div class="bento-card hover-glow delay-4">
-        <span class="bento-icon">♟️</span>
-        <h3>Disciplina y Estrategia</h3>
-        <p>El gimnasio me ha enseñado el valor inquebrantable de la constancia, y mi afición por los juegos de estrategia potencia mi capacidad para resolver problemas lógicos y pensar a largo plazo.</p>
+    <!-- Stats -->
+    <div class="stats-bar">
+      <div class="stat-item">
+        <span class="stat-number">{{ certs() }}+</span>
+        <span class="stat-label">{{ ts.t().about.stat_certs }}</span>
       </div>
-
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-number">{{ projects() }}</span>
+        <span class="stat-label">{{ ts.t().about.stat_projects }}</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-number">{{ langs() }}</span>
+        <span class="stat-label">{{ ts.t().about.stat_langs }}</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-number">{{ months() }}+</span>
+        <span class="stat-label">{{ ts.t().about.stat_months }}</span>
+      </div>
     </div>
 
   </div>

@@ -82,3 +82,91 @@
 .lang-switch button { background: none; border: none; color: var(--text-secondary); cursor: pointer; font-weight: bold; transition: 0.3s; }
 .lang-switch button.active { color: var(--color-primary); }
 .divider { color: var(--text-secondary); font-size: 0.8rem; }
+/* --- Theme button --- */
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.theme-btn {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 20px;
+  padding: 5px 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  line-height: 1;
+}
+.theme-btn:hover {
+  border-color: var(--color-primary);
+  background: rgba(138,43,226,0.1);
+}
+
+/* --- Hamburger --- */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  width: 32px;
+}
+.hamburger span {
+  display: block;
+  height: 2px;
+  background: var(--text-main);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* --- Mobile menu overlay --- */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(8,8,16,0.97);
+  z-index: 999;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.mobile-menu.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.mobile-menu ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  text-align: center;
+}
+.mobile-menu a {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.3s;
+  font-family: 'Courier New', monospace;
+}
+.mobile-menu a:hover { color: var(--color-primary); }
+.mobile-menu .mobile-contact { color: var(--color-primary); }
+
+@media (max-width: 768px) {
+  .desktop-links { display: none !important; }
+  .hamburger { display: flex; }
+  .mobile-menu { display: flex; }
+  .navbar-container { justify-content: space-between; }
+}

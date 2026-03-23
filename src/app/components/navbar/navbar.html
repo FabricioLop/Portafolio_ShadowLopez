@@ -5,17 +5,47 @@
       <span class="logo-name">ShadowLopez</span>
       <span class="logo-code"> /&gt;</span>
     </div>
-    
-    <ul class="nav-links">
-      <li><a href="#about" class="nav-item">About</a></li>
-      <li><a href="#projects" class="nav-item">Projects</a></li>
-      <li><a href="#skills" class="nav-item">Skills</a></li>
-      <li><a href="#contact" class="nav-item contact-link">Contact</a></li>
+
+    <!-- Desktop links -->
+    <ul class="nav-links desktop-links">
+      <li><a href="#about"        class="nav-item" >{{ ts.t().nav.about }}</a></li>
+      <li><a href="#timeline"     class="nav-item" >{{ ts.t().nav.timeline }}</a></li>
+      <li><a href="#projects"     class="nav-item" >{{ ts.t().nav.projects }}</a></li>
+      <li><a href="#skills"       class="nav-item" >{{ ts.t().nav.skills }}</a></li>
+      <li><a href="#certificates" class="nav-item" >{{ ts.t().nav.certificates }}</a></li>
+      <li><a href="#contact"      class="nav-item contact-link">{{ ts.t().nav.contact }}</a></li>
     </ul>
-    <li class="lang-switch">
-  <button (click)="changeLang('en')" [class.active]="(langService.currentLanguage$ | async) === 'en'">EN</button>
-  <span class="divider">|</span>
-  <button (click)="changeLang('es')" [class.active]="(langService.currentLanguage$ | async) === 'es'">ES</button>
-</li>
+
+    <!-- Controls -->
+    <div class="nav-controls">
+      <!-- Lang switch -->
+      <div class="lang-switch">
+        <button (click)="changeLang('en')" [class.active]="(langService.currentLanguage$ | async) === 'en'">EN</button>
+        <span class="divider">|</span>
+        <button (click)="changeLang('es')" [class.active]="(langService.currentLanguage$ | async) === 'es'">ES</button>
+      </div>
+
+      <!-- Theme toggle -->
+      <button class="theme-btn" (click)="themeService.toggle()" [title]="themeService.isDark() ? 'Light mode' : 'Dark mode'">
+        {{ themeService.isDark() ? '☀️' : '🌙' }}
+      </button>
+
+      <!-- Hamburger (mobile) -->
+      <button class="hamburger" (click)="toggleMenu()" [class.open]="menuOpen()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </nav>
+
+<!-- Mobile menu overlay -->
+<div class="mobile-menu" [class.open]="menuOpen()">
+  <ul>
+    <li><a href="#about"        (click)="closeMenu()">{{ ts.t().nav.about }}</a></li>
+    <li><a href="#timeline"     (click)="closeMenu()">{{ ts.t().nav.timeline }}</a></li>
+    <li><a href="#projects"     (click)="closeMenu()">{{ ts.t().nav.projects }}</a></li>
+    <li><a href="#skills"       (click)="closeMenu()">{{ ts.t().nav.skills }}</a></li>
+    <li><a href="#certificates" (click)="closeMenu()">{{ ts.t().nav.certificates }}</a></li>
+    <li><a href="#contact"      (click)="closeMenu()" class="mobile-contact">{{ ts.t().nav.contact }}</a></li>
+  </ul>
+</div>
