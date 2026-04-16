@@ -159,7 +159,8 @@
   color: var(--text-secondary);
   text-decoration: none;
   transition: color 0.3s;
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
 }
 .mobile-menu a:hover { color: var(--color-primary); }
 .mobile-menu .mobile-contact { color: var(--color-primary); }

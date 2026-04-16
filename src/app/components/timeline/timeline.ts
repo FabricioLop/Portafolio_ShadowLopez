@@ -3,7 +3,7 @@ import { TranslationService } from '../../services/translation.service';
 
 interface TimelineItem {
   year: string;
-  type: 'education' | 'project' | 'cert';
+  type: 'education' | 'project' | 'cert' | 'work';
   icon: string;
   titleKey: string;
   placeKey: string;
@@ -62,12 +62,17 @@ export class Timeline {
       titleKey: 'smartfinance_title', placeKey: 'smartfinance_place', descKey: 'smartfinance_desc',
       link: 'https://smart-finance-api-production-42f4.up.railway.app/swagger-ui/index.html#/', status: 'inprogress'
     },
+    {
+      year: 'Mar 2026 — Presente', type: 'work', icon: '',
+      titleKey: 'mandu_title', placeKey: 'mandu_place', descKey: 'mandu_desc'
+    },
   ];
 
   getTypeLabel(type: string): string {
     const t = this.ts.t().timeline;
     if (type === 'education') return t.education_label;
     if (type === 'cert') return t.cert_label;
+    if (type === 'work') return t.work_label;
     return t.project_label;
   }
 

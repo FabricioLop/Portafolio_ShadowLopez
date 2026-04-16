@@ -2,34 +2,120 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>ShadowLopez | Software Engineer Portfolio</title>
+  <title>Fabricio Lopez — Software Engineer & QA | ShadowLopez</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://portafolio-shadow-lopez.vercel.app/">
+
+  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
 
-  <meta name="description" content="Portafolio profesional de Fabricio Lopez (ShadowLopez). Estudiante de Ingeniería de Software en la UPC, especializado en desarrollo Backend, Full Stack y soluciones con Spring Boot, Angular y Supabase.">
+  <!-- Theme color (mobile browser chrome) -->
+  <meta name="theme-color" content="#8b5cf6">
+
+  <!-- SEO primario -->
+  <meta name="description" content="Portafolio de Fabricio Lopez (ShadowLopez) — Software Engineer especializado en Backend y Cloud-native. QA Trainee en Mandu - Visma y estudiante de Ingeniería de Software en la UPC, Lima, Perú.">
+  <meta name="keywords" content="Fabricio Lopez, ShadowLopez, Software Engineer, QA Engineer, Backend Developer, Java, Spring Boot, Angular, TypeScript, AWS, Docker, DevSecOps, FastAPI, Lima, Peru, UPC, Mandu Visma">
   <meta name="author" content="Fabricio Lopez">
+  <meta name="robots" content="index, follow, max-image-preview:large">
 
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://portafolio-shadow-lopez.vercel.app/">
-  <meta property="og:title" content="ShadowLopez | Software Engineer Portfolio">
-  <meta property="og:description" content="Portafolio profesional de Fabricio Lopez (ShadowLopez). Estudiante de Ingeniería de Software en la UPC, especializado en desarrollo Backend, Full Stack y soluciones con Spring Boot, Angular y Supabase.">
+  <meta property="og:title" content="Fabricio Lopez — Software Engineer & QA | ShadowLopez">
+  <meta property="og:description" content="Backend Developer y QA Trainee en Mandu - Visma. Proyectos reales con Java, Spring Boot, Angular, FastAPI y AWS. Estudiante UPC Lima.">
   <meta property="og:image" content="https://portafolio-shadow-lopez.vercel.app/assets/image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fabricio Lopez — Software Engineer Portfolio">
+  <meta property="og:locale" content="es_PE">
+  <meta property="og:site_name" content="ShadowLopez Portfolio">
 
-  <meta property="article:author" content="https://www.linkedin.com/in/fabricio-lopez-dev/">
-  <meta property="article:published_time" content="2026-03-03T00:00:00Z">
-  <meta name="publish_date" content="2026-03-03T00:00:00Z">
-
+  <!-- Twitter / X Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="ShadowLopez | Software Engineer Portfolio">
-  <meta name="twitter:description" content="Explora los proyectos y habilidades de Fabricio Lopez, futuro Software Engineer enfocado en Backend y arquitectura de sistemas.">
+  <meta name="twitter:title" content="Fabricio Lopez — Software Engineer & QA | ShadowLopez">
+  <meta name="twitter:description" content="Backend Developer y QA Trainee en Mandu - Visma. Java · Spring Boot · Angular · AWS · DevSecOps. Lima, Perú.">
   <meta name="twitter:image" content="https://portafolio-shadow-lopez.vercel.app/assets/image.png">
 
+  <!-- Authorship -->
+  <meta property="article:author" content="https://www.linkedin.com/in/fabricio-lopez-dev/">
+  <meta property="article:published_time" content="2026-03-03T00:00:00Z">
+  <meta property="article:modified_time" content="2026-04-15T00:00:00Z">
+
+  <!-- DNS Prefetch para recursos externos -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+  <!-- Preconnect crítico para fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Fuentes (carga prioritaria con display=swap) -->
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Devicons — diferido, no bloquea render inicial -->
+  <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+        media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+  </noscript>
+
+  <!-- Preload imagen hero (LCP — Largest Contentful Paint) -->
+  <link rel="preload" as="image" href="assets/perfil.jpeg" fetchpriority="high">
+
+  <!-- JSON-LD — Datos estructurados -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://portafolio-shadow-lopez.vercel.app/#person",
+        "name": "Fabricio Lopez",
+        "alternateName": "ShadowLopez",
+        "jobTitle": "Software Engineer · QA Trainee",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Mandu - Visma"
+        },
+        "alumniOf": {
+          "@type": "EducationalOrganization",
+          "name": "UPC — Universidad Peruana de Ciencias Aplicadas",
+          "sameAs": "https://www.upc.edu.pe"
+        },
+        "url": "https://portafolio-shadow-lopez.vercel.app/",
+        "sameAs": [
+          "https://www.linkedin.com/in/fabricio-lopez-dev/"
+        ],
+        "knowsAbout": [
+          "Java", "Spring Boot", "Kotlin", "Python", "FastAPI", "Django",
+          "Angular", "TypeScript", "Next.js",
+          "AWS", "Docker", "GitHub Actions", "DevSecOps",
+          "QA Testing", "Selenium", "Playwright",
+          "PostgreSQL", "MySQL", "MongoDB", "Redis"
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Lima",
+          "addressCountry": "PE"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://portafolio-shadow-lopez.vercel.app/#website",
+        "name": "ShadowLopez — Software Engineer Portfolio",
+        "url": "https://portafolio-shadow-lopez.vercel.app/",
+        "description": "Portafolio profesional de Fabricio Lopez — Backend Developer y QA Trainee en Mandu - Visma, estudiante UPC Lima.",
+        "author": { "@id": "https://portafolio-shadow-lopez.vercel.app/#person" },
+        "inLanguage": ["es", "en"]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <app-root></app-root>

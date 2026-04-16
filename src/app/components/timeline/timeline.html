@@ -8,7 +8,7 @@
     @for (item of items; track item.titleKey; let i = $index) {
       <div class="timeline-item" [class.right]="i % 2 !== 0">
         <div class="timeline-connector">
-          <div class="tl-dot" [class]="item.type">{{ item.icon }}</div>
+          <div class="tl-dot" [class]="item.type"></div>
         </div>
 
         <div class="timeline-card hover-glow" [class]="item.type">

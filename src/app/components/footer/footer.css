@@ -1,7 +1,7 @@
 .footer-section {
-  background-color: #0a0a0f;
+  background-color: var(--bg-surface);
   padding: 80px 5% 30px;
-  border-top: 1px solid rgba(138, 43, 226, 0.2);
+  border-top: 1px solid var(--border-color);
 }
 
 .footer-container {
@@ -84,6 +84,13 @@
   color: var(--color-primary-hover);
 }
 
+.list-sep {
+  color: var(--text-secondary);
+  opacity: 0.4;
+  font-size: 0.8rem;
+  margin: 0 4px;
+}
+
 /* --- Columna Derecha --- */
 .footer-actions {
   flex: 1;
@@ -117,7 +124,7 @@
   transition: all 0.3s ease;
   color: var(--text-main);
   background-color: var(--bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border-color);
 }
 
 .social-btn i {
@@ -190,7 +197,7 @@
   text-align: center;
   margin-top: 60px;
   padding-top: 30px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -276,8 +283,8 @@
 .form-group { display: flex; flex-direction: column; }
 
 .form-input {
-  background: rgba(0,0,0,0.35);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: var(--color-primary-dim);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius-medium);
   padding: 12px 16px;
   color: var(--text-main);

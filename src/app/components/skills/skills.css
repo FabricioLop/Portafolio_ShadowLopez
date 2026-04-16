@@ -1,7 +1,7 @@
 .skills-section {
   padding: 100px 5%;
   background-color: var(--bg-dark);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--border-color);
 }
 
 .skills-header {
@@ -51,7 +51,7 @@
   font-size: 1.3rem;
   margin-bottom: 25px;
   padding-bottom: 10px;
-  border-bottom: 2px dashed rgba(255, 255, 255, 0.1);
+  border-bottom: 2px dashed var(--border-color);
 }
 
 .badges-container {
@@ -65,13 +65,13 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: var(--color-primary-dim);
   color: var(--text-secondary);
   padding: 10px 16px;
   border-radius: 25px;
   font-size: 0.95rem;
   font-weight: 500;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
   transition: all 0.3s ease;
   cursor: default;
 }

@@ -10,14 +10,13 @@
       <h2 class="footer-title">{{ ts.t().contact.title }}</h2>
       <p class="footer-quote-dynamic">"{{ fraseActual }}<span class="cursor-type">|</span>"</p>
       <ul class="contact-list">
-        <li><span class="icon">📍</span> Lima, Perú</li>
+        <li>Lima, Perú</li>
         <li>
-          <span class="icon">📧</span>
-          <a href="mailto:fabrixxlop@gmail.com">fabrixxlop&#64;gmail.com</a> |
+          <a href="mailto:fabrixxlop@gmail.com">fabrixxlop&#64;gmail.com</a>
+          <span class="list-sep">·</span>
           <a href="mailto:u202215695@upc.edu.pe">u202215695&#64;upc.edu.pe</a>
         </li>
         <li>
-          <span class="icon">📱</span>
           <a href="https://wa.me/51971464744" target="_blank">+51 971 464 744</a>
         </li>
       </ul>
@@ -35,10 +34,10 @@
         </div>
         <div class="cv-buttons">
           <a href="cv-espanol.pdf" download="CV_Fabricio_Lopez_ES.pdf" class="btn-cv">
-            <span class="icon">📄</span> {{ ts.t().contact.download_es }}
+            {{ ts.t().contact.download_es }}
           </a>
           <a href="cv-english.pdf" download="CV_Fabricio_Lopez_EN.pdf" class="btn-cv">
-            <span class="icon">📄</span> {{ ts.t().contact.download_en }}
+            {{ ts.t().contact.download_en }}
           </a>
         </div>
       </div>
@@ -71,7 +70,7 @@
           @if (formStatus() === 'sending') {
             <span class="spinner"></span> {{ ts.t().contact.sending }}
           } @else {
-            🚀 {{ ts.t().contact.send }}
+            {{ ts.t().contact.send }}
           }
         </button>
         @if (formStatus() === 'success') {
