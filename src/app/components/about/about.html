@@ -25,6 +25,8 @@
           <div class="chips">
             <span class="chip">{{ ts.t().about.interest_coffee }}</span>
             <span class="chip">{{ ts.t().about.interest_anime }}</span>
+            <span class="chip">{{ ts.t().about.interest_pokemon }}</span>
+            <span class="chip">{{ ts.t().about.interest_pokemon_tcg }}</span>
             <span class="chip">{{ ts.t().about.interest_gym }}</span>
             <span class="chip">{{ ts.t().about.interest_reading }}</span>
             <span class="chip">{{ ts.t().about.interest_tech }}</span>
@@ -35,9 +37,11 @@
         <div class="learning-block">
           <p class="learning-label">{{ ts.t().about.learning_label }}</p>
           <div class="learning-tags">
+            <span class="learning-tag">Backend</span>
+            <span class="learning-tag">DevOps</span>
             <span class="learning-tag">DevSecOps</span>
-            <span class="learning-tag">AWS Solutions Architect</span>
             <span class="learning-tag">AI Engineering</span>
+            <span class="learning-tag">AWS Solutions Architect</span>
           </div>
         </div>
 
@@ -128,6 +132,11 @@
       <div class="stat-item">
         <span class="stat-number">{{ months() }}+</span>
         <span class="stat-label">{{ ts.t().about.stat_months }}</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat-item">
+        <span class="stat-number">{{ mandu() }}</span>
+        <span class="stat-label">{{ ts.t().about.stat_mandu }}</span>
       </div>
     </div>
 

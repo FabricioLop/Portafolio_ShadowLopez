@@ -143,6 +143,18 @@
   font-family: 'Courier New', monospace;
   font-size: 0.82rem;
   color: var(--text-secondary);
+  margin-left: auto;   /* badge a la izquierda, año + antigüedad juntos a la derecha */
+}
+
+.tl-duration {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: var(--color-primary-dim);
+  color: var(--color-primary-light);
+  border: 1px solid var(--border-color);
+  white-space: nowrap;
 }
 
 .tl-title {

@@ -14,7 +14,10 @@
         <div class="timeline-card hover-glow" [class]="item.type">
           <div class="card-meta">
             <span class="tl-badge" [class]="item.type">{{ getTypeLabel(item.type) }}</span>
-            <span class="tl-year">{{ item.year }}</span>
+            <span class="tl-year">{{ period(item) }}</span>
+            @if (duration(item); as d) {
+              <span class="tl-duration">{{ d }}</span>
+            }
           </div>
           <h3 class="tl-title">{{ tr(item.titleKey) }}</h3>
           <p class="tl-place">{{ tr(item.placeKey) }}</p>

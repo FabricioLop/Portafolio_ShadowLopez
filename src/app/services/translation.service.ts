@@ -39,9 +39,10 @@ const TRANSLATIONS = {
       discipline_title: 'Proceso, no motivación',
       discipline_desc: 'El gym me enseñó que los resultados vienen del proceso sostenido. Aplico eso al código: constancia diaria, incrementos pequeños, visión a largo plazo. Los problemas difíciles se resuelven con estructura, no con inspiración.',
       stat_certs: 'Certificados', stat_projects: 'Proyectos', stat_langs: 'Lenguajes', stat_months: 'Meses formándome',
+      stat_mandu: 'Meses en Mandu',
       available: 'QA Trainee · Mandu - Visma',
       interests_label: 'Intereses & Hobbies',
-      learning_label: 'Aprendiendo',
+      learning_label: 'Enfoque & aprendizaje',
       langs_label: 'Idiomas',
       lang_es: 'Español', lang_es_level: 'Nativo',
       lang_en: 'Inglés', lang_en_level: 'Intermedio',
@@ -51,6 +52,7 @@ const TRANSLATIONS = {
       now_studying_key: 'Estudiando', now_studying_val: 'AWS Solutions Architect',
       interest_coffee: 'Café helado', interest_anime: 'Anime', interest_gym: 'Gym',
       interest_reading: 'Lectura', interest_tech: 'Tech', interest_strategy: 'Estrategia',
+      interest_pokemon: 'Pokémon', interest_pokemon_tcg: 'Pokémon TCG',
     },
     projects: {
       title: 'Mis', title_highlight: 'Proyectos',
@@ -89,6 +91,7 @@ const TRANSLATIONS = {
       education_label: 'Educación', project_label: 'Proyecto', cert_label: 'Certificación', work_label: 'Experiencia',
       status_live: 'Live', status_inprogress: 'En Desarrollo', status_pending: 'Deploy Pendiente', status_done: 'Completado',
       link_view: 'Ver',
+      month_one: 'mes', month_many: 'meses', month_less: 'menos de 1 mes', present: 'Presente',
       // Education
       upc_title: 'Ingeniería de Software', upc_place: 'UPC — Universidad Peruana de Ciencias Aplicadas',
       upc_desc: 'Carrera de 5 años enfocada en arquitectura de software, bases de datos, cloud computing, metodologías ágiles y ciclo completo de desarrollo de productos digitales.',
@@ -188,9 +191,10 @@ const TRANSLATIONS = {
       discipline_title: 'Process, not motivation',
       discipline_desc: 'The gym taught me results come from sustained process. I apply that to code: daily consistency, small increments, long-term vision. Hard problems are solved with structure, not inspiration.',
       stat_certs: 'Certificates', stat_projects: 'Projects', stat_langs: 'Languages', stat_months: 'Months learning',
+      stat_mandu: 'Months at Mandu',
       available: 'QA Trainee · Mandu - Visma',
       interests_label: 'Interests & Hobbies',
-      learning_label: 'Learning',
+      learning_label: 'Focus & learning',
       langs_label: 'Languages',
       lang_es: 'Spanish', lang_es_level: 'Native',
       lang_en: 'English', lang_en_level: 'Intermediate',
@@ -200,6 +204,7 @@ const TRANSLATIONS = {
       now_studying_key: 'Studying', now_studying_val: 'AWS Solutions Architect',
       interest_coffee: 'Iced latte', interest_anime: 'Anime', interest_gym: 'Gym',
       interest_reading: 'Reading', interest_tech: 'Tech', interest_strategy: 'Strategy',
+      interest_pokemon: 'Pokémon', interest_pokemon_tcg: 'Pokémon TCG',
     },
     projects: {
       title: 'My', title_highlight: 'Projects',
@@ -238,6 +243,7 @@ const TRANSLATIONS = {
       education_label: 'Education', project_label: 'Project', cert_label: 'Certification', work_label: 'Experience',
       status_live: 'Live', status_inprogress: 'In Development', status_pending: 'Deploy Pending', status_done: 'Completed',
       link_view: 'View',
+      month_one: 'month', month_many: 'months', month_less: 'less than 1 month', present: 'Present',
       upc_title: 'Software Engineering', upc_place: 'UPC — Universidad Peruana de Ciencias Aplicadas',
       upc_desc: '5-year degree focused on software architecture, databases, cloud computing, agile methodologies and the full lifecycle of digital product development.',
       scrum_title: 'Scrum Fundamentals Certified (SFC)', scrum_place: 'SCRUMStudy',
@@ -303,11 +309,11 @@ type Lang = keyof typeof TRANSLATIONS;
 export type Translations = {
   nav: { about: string; projects: string; skills: string; certificates: string; timeline: string; contact: string; aria_main: string; aria_home: string; aria_lang: string; aria_theme_light: string; aria_theme_dark: string; aria_menu_open: string; aria_menu_close: string; skip_to_content: string };
   hero: { subtitle: string; eyebrow: string; role: string; availability: string; cta_projects: string; cta_contact: string; terminal_1: string; terminal_2: string; terminal_3: string; terminal_4: string; terminal_5: string };
-  about: { title: string; title_highlight: string; lead: string; vision_title: string; vision_desc: string; value_title: string; value_desc: string; philosophy_title: string; philosophy_desc: string; discipline_title: string; discipline_desc: string; stat_certs: string; stat_projects: string; stat_langs: string; stat_months: string; available: string; interests_label: string; learning_label: string; langs_label: string; lang_es: string; lang_es_level: string; lang_en: string; lang_en_level: string; now_label: string; now_working_key: string; now_working_val: string; now_building_key: string; now_building_val: string; now_studying_key: string; now_studying_val: string; interest_coffee: string; interest_anime: string; interest_gym: string; interest_reading: string; interest_tech: string; interest_strategy: string };
+  about: { title: string; title_highlight: string; lead: string; vision_title: string; vision_desc: string; value_title: string; value_desc: string; philosophy_title: string; philosophy_desc: string; discipline_title: string; discipline_desc: string; stat_certs: string; stat_projects: string; stat_langs: string; stat_months: string; stat_mandu: string; available: string; interests_label: string; learning_label: string; langs_label: string; lang_es: string; lang_es_level: string; lang_en: string; lang_en_level: string; now_label: string; now_working_key: string; now_working_val: string; now_building_key: string; now_building_val: string; now_studying_key: string; now_studying_val: string; interest_coffee: string; interest_anime: string; interest_gym: string; interest_reading: string; interest_tech: string; interest_strategy: string; interest_pokemon: string; interest_pokemon_tcg: string };
   projects: { title: string; title_highlight: string; role_smartfinance: string; desc_smartfinance: string; role_ringent: string; desc_ringent: string; role_hogarfin: string; desc_hogarfin: string; role_emsafe: string; desc_emsafe: string; btn_repo: string; btn_live: string; btn_github: string; btn_api: string; badge_wip: string; badge_live: string; badge_done: string; badge_deploy_pending: string; group_wip: string; group_done: string; pill_bot: string; pill_n8n: string; pill_ec2: string; pill_predictions: string };
   skills: { title: string; title_highlight: string; subtitle: string; box_backend: string; box_frontend: string; box_cloud: string; box_data: string; box_mgmt: string; box_qa: string };
   certificates: { title: string; title_highlight: string; subtitle: string; obtained: string; verify: string; certs_label: string; cat_others: string; aria_toggle: string };
-  timeline: { title: string; title_highlight: string; subtitle: string; education_label: string; project_label: string; cert_label: string; work_label: string; status_live: string; status_inprogress: string; status_pending: string; status_done: string; link_view: string; upc_title: string; upc_place: string; upc_desc: string; scrum_title: string; scrum_place: string; scrum_desc: string; rutgers_title: string; rutgers_place: string; rutgers_desc: string; goog_title: string; goog_place: string; goog_desc: string; emsafe_title: string; emsafe_place: string; emsafe_desc: string; ringent_title: string; ringent_place: string; ringent_desc: string; hogar_title: string; hogar_place: string; hogar_desc: string; smartfinance_title: string; smartfinance_place: string; smartfinance_desc: string; mandu_title: string; mandu_place: string; mandu_desc: string };
+  timeline: { title: string; title_highlight: string; subtitle: string; education_label: string; project_label: string; cert_label: string; work_label: string; status_live: string; status_inprogress: string; status_pending: string; status_done: string; link_view: string; month_one: string; month_many: string; month_less: string; present: string; upc_title: string; upc_place: string; upc_desc: string; scrum_title: string; scrum_place: string; scrum_desc: string; rutgers_title: string; rutgers_place: string; rutgers_desc: string; goog_title: string; goog_place: string; goog_desc: string; emsafe_title: string; emsafe_place: string; emsafe_desc: string; ringent_title: string; ringent_place: string; ringent_desc: string; hogar_title: string; hogar_place: string; hogar_desc: string; smartfinance_title: string; smartfinance_place: string; smartfinance_desc: string; mandu_title: string; mandu_place: string; mandu_desc: string };
   contact: { title: string; availability: string; form_title: string; name: string; email: string; subject: string; message: string; send: string; sending: string; success: string; error: string; connect: string; download_es: string; download_en: string; required: string; invalid_email: string; quotes: readonly string[] };
   footer_bottom: { rights: string; quick_about: string; quick_projects: string; quick_skills: string; quick_certs: string; quick_timeline: string };
   splash: { line1: string; line2: string; line3: string; line4: string; skip: string };

@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { TranslationService } from '../../services/translation.service';
+import { MANDU_START, monthsSince } from '../../utils/experience';
 
 interface TimelineItem {
   year: string;
@@ -10,6 +11,10 @@ interface TimelineItem {
   descKey: string;
   link?: string;
   status?: 'live' | 'inprogress' | 'done' | 'pending';
+  /** Si está presente, se muestra la antigüedad junto al año y se recalcula sola. */
+  since?: Date;
+  /** Añade "— Presente" / "— Present" según el idioma activo. */
+  ongoing?: boolean;
 }
 
 @Component({
@@ -24,7 +29,7 @@ export class Timeline {
 
   items: TimelineItem[] = [
     {
-      year: '2022 — Presente', type: 'education', icon: '🎓',
+      year: '2022', ongoing: true, type: 'education', icon: '🎓',
       titleKey: 'upc_title', placeKey: 'upc_place', descKey: 'upc_desc'
     },
     {
@@ -63,8 +68,9 @@ export class Timeline {
       link: 'https://smart-finance-api-production-42f4.up.railway.app/swagger-ui/index.html#/', status: 'inprogress'
     },
     {
-      year: 'Mar 2026 — Presente', type: 'work', icon: '',
-      titleKey: 'mandu_title', placeKey: 'mandu_place', descKey: 'mandu_desc'
+      year: 'Mar 2026', ongoing: true, type: 'work', icon: '',
+      titleKey: 'mandu_title', placeKey: 'mandu_place', descKey: 'mandu_desc',
+      since: MANDU_START
     },
   ];
 
@@ -87,4 +93,18 @@ export class Timeline {
 
   /** Resuelve una clave suelta del bloque `timeline` de las traducciones. */
   tr(key: string): string { return (this.ts.t().timeline as any)[key] ?? key; }
+
+  /** "2022" → "2022 — Presente" cuando sigue en curso. */
+  period(item: TimelineItem): string {
+    return item.ongoing ? `${item.year} — ${this.ts.t().timeline.present}` : item.year;
+  }
+
+  /** "4 meses" / "1 mes" — calculado desde la fecha de inicio, no hardcodeado. */
+  duration(item: TimelineItem): string {
+    if (!item.since) return '';
+    const n = monthsSince(item.since);
+    const t = this.ts.t().timeline;
+    if (n < 1) return t.month_less;
+    return `${n} ${n === 1 ? t.month_one : t.month_many}`;
+  }
 }

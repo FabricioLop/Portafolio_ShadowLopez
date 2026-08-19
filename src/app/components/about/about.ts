@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, DestroyRef, ElementRef, inject, signal } from '@angular/core';
 import { TranslationService } from '../../services/translation.service';
+import { MANDU_START, monthsSince } from '../../utils/experience';
 
 @Component({
   selector: 'app-about',
@@ -14,12 +15,20 @@ export class About implements AfterViewInit {
   private destroyRef = inject(DestroyRef);
 
   // Mantener alineado con: 25 certificados en certificates.ts, 4 tarjetas en projects.html.
-  private readonly targets = { certs: 25, projects: 4, langs: 5, months: 36 };
+  // `mandu` se calcula solo desde la fecha de inicio, no hay que tocarlo cada mes.
+  private readonly targets = {
+    certs: 25,
+    projects: 4,
+    langs: 5,
+    months: 36,
+    mandu: monthsSince(MANDU_START),
+  };
 
   certs    = signal(0);
   projects = signal(0);
   langs    = signal(0);
   months   = signal(0);
+  mandu    = signal(0);
 
   private frames: number[] = [];
 
@@ -38,6 +47,7 @@ export class About implements AfterViewInit {
       this.projects.set(this.targets.projects);
       this.langs.set(this.targets.langs);
       this.months.set(this.targets.months);
+      this.mandu.set(this.targets.mandu);
       return;
     }
 
@@ -48,6 +58,7 @@ export class About implements AfterViewInit {
       this.animate(this.projects, this.targets.projects, 800);
       this.animate(this.langs,    this.targets.langs,    600);
       this.animate(this.months,   this.targets.months,   1500);
+      this.animate(this.mandu,    this.targets.mandu,    900);
     }, { threshold: 0.3 });
 
     observer.observe(target);
