@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal, ElementRef } from '@angular/core';
+import { AfterViewInit, Component, DestroyRef, ElementRef, inject, signal } from '@angular/core';
 import { TranslationService } from '../../services/translation.service';
 
 @Component({
@@ -8,41 +8,66 @@ import { TranslationService } from '../../services/translation.service';
   templateUrl: './about.html',
   styleUrl: './about.css',
 })
-export class About implements OnInit {
+export class About implements AfterViewInit {
   ts = inject(TranslationService);
-  private el = inject(ElementRef);
+  private el = inject(ElementRef<HTMLElement>);
+  private destroyRef = inject(DestroyRef);
 
-  certs   = signal(0);
-  projects= signal(0);
-  langs   = signal(0);
-  months  = signal(0);
+  // Mantener alineado con: 25 certificados en certificates.ts, 4 tarjetas en projects.html.
+  private readonly targets = { certs: 25, projects: 4, langs: 5, months: 36 };
 
-  private targets = { certs: 25, projects: 3, langs: 5, months: 36 };
-  private animated = false;
+  certs    = signal(0);
+  projects = signal(0);
+  langs    = signal(0);
+  months   = signal(0);
 
-  ngOnInit() {
+  private frames: number[] = [];
+
+  ngAfterViewInit() {
+    const target: Element =
+      this.el.nativeElement.querySelector('.stats-bar') ?? this.el.nativeElement;
+
+    // Sin animación si el usuario pidió reducir movimiento, o si no hay
+    // IntersectionObserver (entornos de test): mostramos el valor final.
+    const skipAnimation =
+      typeof IntersectionObserver === 'undefined' ||
+      window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+
+    if (skipAnimation) {
+      this.certs.set(this.targets.certs);
+      this.projects.set(this.targets.projects);
+      this.langs.set(this.targets.langs);
+      this.months.set(this.targets.months);
+      return;
+    }
+
     const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && !this.animated) {
-        this.animated = true;
-        this.animateCounter(this.certs,    this.targets.certs,    1200);
-        this.animateCounter(this.projects, this.targets.projects, 800);
-        this.animateCounter(this.langs,    this.targets.langs,    600);
-        this.animateCounter(this.months,   this.targets.months,   1500);
-        observer.disconnect();
-      }
+      if (!entry.isIntersecting) return;
+      observer.disconnect();
+      this.animate(this.certs,    this.targets.certs,    1200);
+      this.animate(this.projects, this.targets.projects, 800);
+      this.animate(this.langs,    this.targets.langs,    600);
+      this.animate(this.months,   this.targets.months,   1500);
     }, { threshold: 0.3 });
-    observer.observe(this.el.nativeElement.querySelector('.stats-bar') ?? this.el.nativeElement);
+
+    observer.observe(target);
+
+    this.destroyRef.onDestroy(() => {
+      observer.disconnect();
+      this.frames.forEach(cancelAnimationFrame);
+      this.frames = [];
+    });
   }
 
-  private animateCounter(sig: ReturnType<typeof signal<number>>, target: number, duration: number) {
-    const steps = 40;
-    const step  = target / steps;
-    const interval = duration / steps;
-    let current = 0;
-    const timer = setInterval(() => {
-      current = Math.min(current + step, target);
-      sig.set(Math.round(current));
-      if (current >= target) clearInterval(timer);
-    }, interval);
+  /** Cuenta con requestAnimationFrame: sigue el refresco real y no deja timers colgando. */
+  private animate(target: ReturnType<typeof signal<number>>, to: number, duration: number) {
+    const start = performance.now();
+    const tick = (now: number) => {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      target.set(Math.round(to * eased));
+      if (p < 1) this.frames.push(requestAnimationFrame(tick));
+    };
+    this.frames.push(requestAnimationFrame(tick));
   }
 }

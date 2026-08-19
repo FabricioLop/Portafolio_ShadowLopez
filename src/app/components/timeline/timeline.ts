@@ -9,7 +9,7 @@ interface TimelineItem {
   placeKey: string;
   descKey: string;
   link?: string;
-  status?: 'live' | 'inprogress' | 'offline' | 'pending';
+  status?: 'live' | 'inprogress' | 'done' | 'pending';
 }
 
 @Component({
@@ -43,6 +43,11 @@ export class Timeline {
       link: 'https://github.com/EMSafeUPC', status: 'pending'
     },
     {
+      year: '2025', type: 'project', icon: '🏠',
+      titleKey: 'hogar_title', placeKey: 'hogar_place', descKey: 'hogar_desc',
+      link: 'https://hogar-fin-web-app.vercel.app/', status: 'live'
+    },
+    {
       year: 'Nov 2025', type: 'cert', icon: '🔐',
       titleKey: 'goog_title', placeKey: 'goog_place', descKey: 'goog_desc',
       link: 'https://www.coursera.org/verify/TEZN8JZRYLK3'
@@ -50,12 +55,7 @@ export class Timeline {
     {
       year: 'Nov 2025', type: 'project', icon: '🐟',
       titleKey: 'ringent_title', placeKey: 'ringent_place', descKey: 'ringent_desc',
-      link: 'https://github.com/RingenSoft', status: 'inprogress'
-    },
-    {
-      year: '2025', type: 'project', icon: '🏠',
-      titleKey: 'hogar_title', placeKey: 'hogar_place', descKey: 'hogar_desc',
-      link: 'https://hogar-fin-web-app.vercel.app/', status: 'live'
+      link: 'https://github.com/RingenSoft', status: 'done'
     },
     {
       year: 'Mar 2026', type: 'project', icon: '💰',
@@ -81,10 +81,10 @@ export class Timeline {
     if (status === 'live')       return t.status_live;
     if (status === 'inprogress') return t.status_inprogress;
     if (status === 'pending')    return t.status_pending;
+    if (status === 'done')       return t.status_done;
     return '';
   }
 
-  getTitle(key: string): string { return (this.ts.t().timeline as any)[key] ?? key; }
-  getPlace(key: string): string { return (this.ts.t().timeline as any)[key] ?? key; }
-  getDesc(key: string):  string { return (this.ts.t().timeline as any)[key] ?? key; }
+  /** Resuelve una clave suelta del bloque `timeline` de las traducciones. */
+  tr(key: string): string { return (this.ts.t().timeline as any)[key] ?? key; }
 }

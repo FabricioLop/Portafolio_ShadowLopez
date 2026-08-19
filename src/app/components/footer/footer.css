@@ -339,12 +339,23 @@
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
+/* El <p> vive siempre en el DOM (aria-live necesita estar presente antes
+   de que cambie el texto); sin estado no ocupa espacio. */
 .form-feedback {
   font-size: 0.9rem;
-  padding: 10px 14px;
   border-radius: var(--radius-medium);
   text-align: center;
   font-weight: 600;
+}
+
+.form-feedback:not(.success):not(.error) {
+  padding: 0;
+  min-height: 0;
+}
+
+.form-feedback.success,
+.form-feedback.error {
+  padding: 10px 14px;
 }
 .form-feedback.success { background: rgba(39,201,63,0.1); color: #27c93f; border: 1px solid rgba(39,201,63,0.3); }
 .form-feedback.error   { background: rgba(255,80,80,0.1); color: #ff5050; border: 1px solid rgba(255,80,80,0.3); }

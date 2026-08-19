@@ -1,5 +1,4 @@
 import { Injectable, computed, inject } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { Language } from './language';
 
 const TRANSLATIONS = {
@@ -7,6 +6,14 @@ const TRANSLATIONS = {
     nav: {
       about: 'Sobre Mí', projects: 'Proyectos', skills: 'Skills',
       certificates: 'Certificados', timeline: 'Trayectoria', contact: 'Contacto',
+      aria_main: 'Navegación principal',
+      aria_home: 'Inicio — ShadowLopez',
+      aria_lang: 'Cambiar idioma',
+      aria_theme_light: 'Cambiar a modo claro',
+      aria_theme_dark: 'Cambiar a modo oscuro',
+      aria_menu_open: 'Abrir menú',
+      aria_menu_close: 'Cerrar menú',
+      skip_to_content: 'Saltar al contenido',
     },
     hero: {
       subtitle: 'Software Engineer | Backend & Full Stack',
@@ -42,6 +49,8 @@ const TRANSLATIONS = {
       now_working_key: 'Trabajando en', now_working_val: 'Mandu - Visma',
       now_building_key: 'Construyendo', now_building_val: 'SmartFinance-Core',
       now_studying_key: 'Estudiando', now_studying_val: 'AWS Solutions Architect',
+      interest_coffee: 'Café helado', interest_anime: 'Anime', interest_gym: 'Gym',
+      interest_reading: 'Lectura', interest_tech: 'Tech', interest_strategy: 'Estrategia',
     },
     projects: {
       title: 'Mis', title_highlight: 'Proyectos',
@@ -57,6 +66,8 @@ const TRANSLATIONS = {
       badge_wip: 'En Desarrollo', badge_live: 'Live', badge_done: 'Completado',
       badge_deploy_pending: 'Deploy Pendiente',
       group_wip: 'En Desarrollo', group_done: 'Terminados & Desplegados',
+      pill_bot: 'Bot WhatsApp + Gemini IA', pill_n8n: 'Automatización n8n',
+      pill_ec2: 'AWS EC2', pill_predictions: 'Predicciones Python',
     },
     skills: {
       title: 'Mi Arsenal', title_highlight: 'Tecnológico',
@@ -69,12 +80,15 @@ const TRANSLATIONS = {
       title: 'Mis', title_highlight: 'Certificaciones',
       subtitle: 'Aprendizaje continuo a través de plataformas internacionales.',
       obtained: 'certificados obtenidos', verify: 'Verificar ↗',
+      certs_label: 'certs', cat_others: 'Otros Certificados',
+      aria_toggle: 'Ver certificados de',
     },
     timeline: {
       title: 'Mi', title_highlight: 'Trayectoria',
       subtitle: 'Formación académica, proyectos y hitos clave de mi desarrollo profesional.',
       education_label: 'Educación', project_label: 'Proyecto', cert_label: 'Certificación', work_label: 'Experiencia',
-      status_live: 'Live', status_inprogress: 'En Desarrollo', status_pending: 'Deploy Pendiente',
+      status_live: 'Live', status_inprogress: 'En Desarrollo', status_pending: 'Deploy Pendiente', status_done: 'Completado',
+      link_view: 'Ver',
       // Education
       upc_title: 'Ingeniería de Software', upc_place: 'UPC — Universidad Peruana de Ciencias Aplicadas',
       upc_desc: 'Carrera de 5 años enfocada en arquitectura de software, bases de datos, cloud computing, metodologías ágiles y ciclo completo de desarrollo de productos digitales.',
@@ -108,6 +122,20 @@ const TRANSLATIONS = {
       success: 'Mensaje enviado con éxito.', error: 'Error al enviar. Intenta por email directamente.',
       connect: 'Conecta Conmigo',
       download_es: 'Descargar CV (Español)', download_en: 'Download CV (English)',
+      required: 'Completa nombre, email y mensaje.',
+      invalid_email: 'Revisa el formato del email.',
+      quotes: [
+        'Transformando café y lógica en software de alto impacto.',
+        'Arquitecturando el mañana, un commit a la vez.',
+        'Especialista en resolver problemas complejos con código simple.',
+        'Apasionado por el Backend, enfocado en la escalabilidad.',
+        'Construyendo puentes entre ideas y productos reales.',
+        'Clean Code como filosofía, rendimiento como meta.',
+        'De la idea a la producción: ciclo completo de desarrollo.',
+        'Explorando las fronteras de DevSecOps y Ciberseguridad.',
+        'Junior en experiencia, Senior en actitud y aprendizaje.',
+        'ShadowLopez: Programación con propósito.',
+      ],
     },
     footer_bottom: {
       rights: 'Todos los derechos reservados.',
@@ -127,6 +155,14 @@ const TRANSLATIONS = {
     nav: {
       about: 'About', projects: 'Projects', skills: 'Skills',
       certificates: 'Certificates', timeline: 'Journey', contact: 'Contact',
+      aria_main: 'Main navigation',
+      aria_home: 'Home — ShadowLopez',
+      aria_lang: 'Change language',
+      aria_theme_light: 'Switch to light mode',
+      aria_theme_dark: 'Switch to dark mode',
+      aria_menu_open: 'Open menu',
+      aria_menu_close: 'Close menu',
+      skip_to_content: 'Skip to content',
     },
     hero: {
       subtitle: 'Software Engineer | Backend & Full Stack',
@@ -162,6 +198,8 @@ const TRANSLATIONS = {
       now_working_key: 'Working at', now_working_val: 'Mandu - Visma',
       now_building_key: 'Building', now_building_val: 'SmartFinance-Core',
       now_studying_key: 'Studying', now_studying_val: 'AWS Solutions Architect',
+      interest_coffee: 'Iced latte', interest_anime: 'Anime', interest_gym: 'Gym',
+      interest_reading: 'Reading', interest_tech: 'Tech', interest_strategy: 'Strategy',
     },
     projects: {
       title: 'My', title_highlight: 'Projects',
@@ -177,6 +215,8 @@ const TRANSLATIONS = {
       badge_wip: 'In Development', badge_live: 'Live', badge_done: 'Completed',
       badge_deploy_pending: 'Deploy Pending',
       group_wip: 'In Development', group_done: 'Completed & Deployed',
+      pill_bot: 'WhatsApp bot + Gemini AI', pill_n8n: 'n8n automation',
+      pill_ec2: 'AWS EC2', pill_predictions: 'Python predictions',
     },
     skills: {
       title: 'My Tech', title_highlight: 'Arsenal',
@@ -189,12 +229,15 @@ const TRANSLATIONS = {
       title: 'My', title_highlight: 'Certifications',
       subtitle: 'Continuous learning through international platforms.',
       obtained: 'certificates obtained', verify: 'Verify ↗',
+      certs_label: 'certs', cat_others: 'Other Certificates',
+      aria_toggle: 'View certificates from',
     },
     timeline: {
       title: 'My', title_highlight: 'Journey',
       subtitle: 'Academic background, projects and key professional milestones.',
       education_label: 'Education', project_label: 'Project', cert_label: 'Certification', work_label: 'Experience',
-      status_live: 'Live', status_inprogress: 'In Development', status_pending: 'Deploy Pending',
+      status_live: 'Live', status_inprogress: 'In Development', status_pending: 'Deploy Pending', status_done: 'Completed',
+      link_view: 'View',
       upc_title: 'Software Engineering', upc_place: 'UPC — Universidad Peruana de Ciencias Aplicadas',
       upc_desc: '5-year degree focused on software architecture, databases, cloud computing, agile methodologies and the full lifecycle of digital product development.',
       scrum_title: 'Scrum Fundamentals Certified (SFC)', scrum_place: 'SCRUMStudy',
@@ -225,6 +268,20 @@ const TRANSLATIONS = {
       success: 'Message sent successfully.', error: 'Error sending. Try via email directly.',
       connect: 'Connect with Me',
       download_es: 'Descargar CV (Español)', download_en: 'Download CV (English)',
+      required: 'Please fill in name, email and message.',
+      invalid_email: 'Please check the email format.',
+      quotes: [
+        'Turning coffee and logic into high-impact software.',
+        'Architecting tomorrow, one commit at a time.',
+        'Solving complex problems with simple code.',
+        'Backend-driven, scalability-focused.',
+        'Building bridges between ideas and real products.',
+        'Clean code as philosophy, performance as the goal.',
+        'From idea to production: the full development cycle.',
+        'Exploring the frontiers of DevSecOps and cybersecurity.',
+        'Junior in experience, senior in attitude and learning.',
+        'ShadowLopez: programming with purpose.',
+      ],
     },
     footer_bottom: {
       rights: 'All rights reserved.',
@@ -244,14 +301,14 @@ const TRANSLATIONS = {
 type Lang = keyof typeof TRANSLATIONS;
 
 export type Translations = {
-  nav: { about: string; projects: string; skills: string; certificates: string; timeline: string; contact: string };
+  nav: { about: string; projects: string; skills: string; certificates: string; timeline: string; contact: string; aria_main: string; aria_home: string; aria_lang: string; aria_theme_light: string; aria_theme_dark: string; aria_menu_open: string; aria_menu_close: string; skip_to_content: string };
   hero: { subtitle: string; eyebrow: string; role: string; availability: string; cta_projects: string; cta_contact: string; terminal_1: string; terminal_2: string; terminal_3: string; terminal_4: string; terminal_5: string };
-  about: { title: string; title_highlight: string; lead: string; vision_title: string; vision_desc: string; value_title: string; value_desc: string; philosophy_title: string; philosophy_desc: string; discipline_title: string; discipline_desc: string; stat_certs: string; stat_projects: string; stat_langs: string; stat_months: string; available: string; interests_label: string; learning_label: string; langs_label: string; lang_es: string; lang_es_level: string; lang_en: string; lang_en_level: string; now_label: string; now_working_key: string; now_working_val: string; now_building_key: string; now_building_val: string; now_studying_key: string; now_studying_val: string };
-  projects: { title: string; title_highlight: string; role_smartfinance: string; desc_smartfinance: string; role_ringent: string; desc_ringent: string; role_hogarfin: string; desc_hogarfin: string; role_emsafe: string; desc_emsafe: string; btn_repo: string; btn_live: string; btn_github: string; btn_api: string; badge_wip: string; badge_live: string; badge_done: string; badge_deploy_pending: string; group_wip: string; group_done: string };
+  about: { title: string; title_highlight: string; lead: string; vision_title: string; vision_desc: string; value_title: string; value_desc: string; philosophy_title: string; philosophy_desc: string; discipline_title: string; discipline_desc: string; stat_certs: string; stat_projects: string; stat_langs: string; stat_months: string; available: string; interests_label: string; learning_label: string; langs_label: string; lang_es: string; lang_es_level: string; lang_en: string; lang_en_level: string; now_label: string; now_working_key: string; now_working_val: string; now_building_key: string; now_building_val: string; now_studying_key: string; now_studying_val: string; interest_coffee: string; interest_anime: string; interest_gym: string; interest_reading: string; interest_tech: string; interest_strategy: string };
+  projects: { title: string; title_highlight: string; role_smartfinance: string; desc_smartfinance: string; role_ringent: string; desc_ringent: string; role_hogarfin: string; desc_hogarfin: string; role_emsafe: string; desc_emsafe: string; btn_repo: string; btn_live: string; btn_github: string; btn_api: string; badge_wip: string; badge_live: string; badge_done: string; badge_deploy_pending: string; group_wip: string; group_done: string; pill_bot: string; pill_n8n: string; pill_ec2: string; pill_predictions: string };
   skills: { title: string; title_highlight: string; subtitle: string; box_backend: string; box_frontend: string; box_cloud: string; box_data: string; box_mgmt: string; box_qa: string };
-  certificates: { title: string; title_highlight: string; subtitle: string; obtained: string; verify: string };
-  timeline: { title: string; title_highlight: string; subtitle: string; education_label: string; project_label: string; cert_label: string; work_label: string; status_live: string; status_inprogress: string; status_pending: string; upc_title: string; upc_place: string; upc_desc: string; scrum_title: string; scrum_place: string; scrum_desc: string; rutgers_title: string; rutgers_place: string; rutgers_desc: string; goog_title: string; goog_place: string; goog_desc: string; emsafe_title: string; emsafe_place: string; emsafe_desc: string; ringent_title: string; ringent_place: string; ringent_desc: string; hogar_title: string; hogar_place: string; hogar_desc: string; smartfinance_title: string; smartfinance_place: string; smartfinance_desc: string; mandu_title: string; mandu_place: string; mandu_desc: string };
-  contact: { title: string; availability: string; form_title: string; name: string; email: string; subject: string; message: string; send: string; sending: string; success: string; error: string; connect: string; download_es: string; download_en: string };
+  certificates: { title: string; title_highlight: string; subtitle: string; obtained: string; verify: string; certs_label: string; cat_others: string; aria_toggle: string };
+  timeline: { title: string; title_highlight: string; subtitle: string; education_label: string; project_label: string; cert_label: string; work_label: string; status_live: string; status_inprogress: string; status_pending: string; status_done: string; link_view: string; upc_title: string; upc_place: string; upc_desc: string; scrum_title: string; scrum_place: string; scrum_desc: string; rutgers_title: string; rutgers_place: string; rutgers_desc: string; goog_title: string; goog_place: string; goog_desc: string; emsafe_title: string; emsafe_place: string; emsafe_desc: string; ringent_title: string; ringent_place: string; ringent_desc: string; hogar_title: string; hogar_place: string; hogar_desc: string; smartfinance_title: string; smartfinance_place: string; smartfinance_desc: string; mandu_title: string; mandu_place: string; mandu_desc: string };
+  contact: { title: string; availability: string; form_title: string; name: string; email: string; subject: string; message: string; send: string; sending: string; success: string; error: string; connect: string; download_es: string; download_en: string; required: string; invalid_email: string; quotes: readonly string[] };
   footer_bottom: { rights: string; quick_about: string; quick_projects: string; quick_skills: string; quick_certs: string; quick_timeline: string };
   splash: { line1: string; line2: string; line3: string; line4: string; skip: string };
 };
@@ -259,7 +316,7 @@ export type Translations = {
 @Injectable({ providedIn: 'root' })
 export class TranslationService {
   private langService = inject(Language);
-  private lang = toSignal(this.langService.currentLanguage$, { initialValue: 'es' as string });
+  private lang = this.langService.current;
 
   t = computed(() => (TRANSLATIONS[this.lang() as Lang] ?? TRANSLATIONS['es']) as any as Translations);
 }

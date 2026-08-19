@@ -1,5 +1,4 @@
 import { Component, inject, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Navbar }         from './components/navbar/navbar';
 import { Splash }         from './components/splash/splash';
 import { ScrollProgress } from './components/scroll-progress/scroll-progress';
@@ -15,7 +14,7 @@ import { TranslationService } from './services/translation.service';
   selector: 'app-root',
   standalone: true,
   imports: [
-    CommonModule, Navbar, Splash, ScrollProgress,
+    Navbar, Splash, ScrollProgress,
     About, Timeline, Projects, Skills, Certificates, Footer
   ],
   templateUrl: './app.html',
@@ -23,13 +22,25 @@ import { TranslationService } from './services/translation.service';
 })
 export class App {
   ts = inject(TranslationService);
-  showSplash = signal(true);
+
+  /** El splash es un overlay: el contenido se renderiza debajo desde el primer frame. */
+  showSplash = signal(Splash.shouldShow());
+
+  /** El marquee necesita la lista duplicada para que el bucle sea continuo. */
+  readonly marqueeTech = [
+    'Spring Boot', 'Angular', 'AWS EC2', 'Docker', 'TypeScript', 'PostgreSQL',
+    'FastAPI', 'Next.js', 'GitHub Actions', 'Linux', 'Supabase', 'n8n',
+  ];
+
+  private readonly reducedMotion =
+    typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
   onSplashDone() {
     this.showSplash.set(false);
   }
 
   onPhotoTilt(event: MouseEvent) {
+    if (this.reducedMotion) return;
     const el = event.currentTarget as HTMLElement;
     const rect = el.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
@@ -41,6 +52,7 @@ export class App {
   }
 
   onPhotoReset(event: MouseEvent) {
+    if (this.reducedMotion) return;
     const el = event.currentTarget as HTMLElement;
     el.style.transition = 'transform 0.55s ease';
     el.style.transform = 'perspective(700px) rotateY(0deg) rotateX(0deg)';

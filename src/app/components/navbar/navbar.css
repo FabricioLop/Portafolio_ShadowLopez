@@ -30,6 +30,15 @@
   box-shadow: 0 10px 40px rgba(138, 43, 226, 0.2);
 }
 
+.logo {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 1px;
+  white-space: nowrap;   /* evita que "<ShadowLopez />" se parta en móvil */
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
 .logo-name {
   color: var(--text-main);
   font-weight: 700;
@@ -74,10 +83,6 @@
   transform: scale(1.05);
 }
 
-@media (max-width: 768px) {
-  .nav-links { display: none; } /* Podríamos añadir un menú hamburguesa luego */
-  .navbar-container { justify-content: center; }
-}
 .lang-switch { display: flex; align-items: center; gap: 5px; margin-left: 10px; }
 .lang-switch button { background: none; border: none; color: var(--text-secondary); cursor: pointer; font-weight: bold; transition: 0.3s; }
 .lang-switch button.active { color: var(--color-primary); }
@@ -90,6 +95,10 @@
 }
 
 .theme-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-main);
   background: none;
   border: 1px solid rgba(255,255,255,0.12);
   border-radius: 20px;
@@ -133,7 +142,9 @@
   display: none;
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(8,8,16,0.97);
+  /* Opaco: con alfa el hero se transparentaba detrás del menú. */
+  background: var(--bg-dark);
+  backdrop-filter: blur(6px);
   z-index: 999;
   flex-direction: column;
   align-items: center;
@@ -171,3 +182,20 @@
   .mobile-menu { display: flex; }
   .navbar-container { justify-content: space-between; }
 }
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .navbar-container { padding: 8px 16px; gap: 10px; }
+  .logo-name { font-size: 1.05rem; }
+  .nav-controls { gap: 6px; }
+  .lang-switch { margin-left: 0; }
+  .lang-switch button { font-size: 0.85rem; }
+}
+
+@media (max-width: 380px) {
+  .logo-name { font-size: 0.95rem; }
+  .navbar-container { padding: 8px 14px; }
+}
+
+/* El overlay móvil hereda el color del texto en modo claro */
+[data-theme="light"] .hamburger span { background: var(--text-main); }

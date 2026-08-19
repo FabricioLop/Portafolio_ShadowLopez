@@ -10,6 +10,8 @@ interface Certificate {
 interface CertCategory {
   icon: string;
   title: string;
+  /** Clave de traducción, para las categorías cuyo nombre no es un término propio. */
+  titleKey?: 'cat_others';
   issuer: string;
   color: string;
   certs: Certificate[];
@@ -69,7 +71,7 @@ export class Certificates {
       ]
     },
     {
-      icon: '💡', title: 'Otros Certificados', issuer: 'Macquarie · ORT Uruguay · SCRUMStudy', color: '#8a2be2',
+      icon: '💡', title: 'Otros Certificados', titleKey: 'cat_others', issuer: 'Macquarie · ORT Uruguay · SCRUMStudy', color: '#8a2be2',
       certs: [
         { name: 'Excel Skills for Business: Essentials',           issued: 'Jun 2025', verifyUrl: 'https://www.coursera.org/verify/BUVAMD2X7R4K' },
         { name: 'Excel Skills for Business: Intermediate I',       issued: 'Jun 2025', verifyUrl: 'https://www.coursera.org/verify/2AV50BPHO58E' },
@@ -78,6 +80,11 @@ export class Certificates {
       ]
     },
   ];
+
+  /** Los nombres propios (Cybersecurity, Cloud…) no se traducen; el resto sí. */
+  title(cat: CertCategory): string {
+    return cat.titleKey ? this.ts.t().certificates[cat.titleKey] : cat.title;
+  }
 
   get totalCerts(): number {
     return this.categories.reduce((sum, cat) => sum + cat.certs.length, 0);

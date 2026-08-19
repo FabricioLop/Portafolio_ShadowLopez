@@ -4,6 +4,7 @@
 .hero-section {
   position: relative;
   min-height: 100vh;
+  min-height: 100svh;   /* evita el salto por la barra de URL en móvil */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -263,6 +264,15 @@
 @keyframes marquee-run {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
+}
+
+/* Con "reducir movimiento" el marquee se queda quieto en vez de parpadear */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+  .hero-marquee {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
 }
 
 /* =============================================

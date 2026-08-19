@@ -1,13 +1,15 @@
-<!-- Splash screen -->
+<a class="skip-link" href="#main">{{ ts.t().nav.skip_to_content }}</a>
+
+<!-- Splash: overlay decorativo, el contenido de abajo ya está renderizado -->
 @if (showSplash()) {
   <app-splash (done)="onSplashDone()"></app-splash>
 }
 
-<!-- Main content -->
-@if (!showSplash()) {
-  <app-navbar></app-navbar>
+<app-scroll-progress></app-scroll-progress>
+<app-navbar></app-navbar>
 
-  <main class="hero-section">
+<main id="main">
+  <section id="top" class="hero-section">
     <div class="hero-container">
 
       <!-- Text side -->
@@ -18,10 +20,10 @@
           <span class="name-sub">Lopez</span>
         </h1>
         <p class="hero-role">{{ ts.t().hero.role }}</p>
-        <div class="hero-avail">
-          <span class="avail-pulse"></span>
+        <p class="hero-avail">
+          <span class="avail-pulse" aria-hidden="true"></span>
           {{ ts.t().hero.availability }}
-        </div>
+        </p>
         <div class="hero-cta">
           <a href="#projects" class="btn-fill">{{ ts.t().hero.cta_projects }}</a>
           <a href="#contact" class="btn-ghost">{{ ts.t().hero.cta_contact }}</a>
@@ -33,49 +35,32 @@
         <div class="hero-photo-card"
              (mousemove)="onPhotoTilt($event)"
              (mouseleave)="onPhotoReset($event)">
-          <img src="assets/perfil.jpeg" alt="Fabricio Lopez — Software Engineer" class="hero-img"
-               fetchpriority="high" decoding="async">
-          <div class="photo-overlay"></div>
+          <img src="assets/perfil.jpeg" alt="Fabricio Lopez" class="hero-img"
+               width="330" height="415" fetchpriority="high" decoding="async">
+          <div class="photo-overlay" aria-hidden="true"></div>
         </div>
       </div>
 
     </div>
 
-    <!-- Marquee strip -->
-    <div class="hero-marquee">
+    <!-- Marquee strip (decorativo: el stack real está en #skills) -->
+    <div class="hero-marquee" aria-hidden="true">
       <div class="marquee-track">
-        <span>Spring Boot</span><span class="msep">·</span>
-        <span>Angular</span><span class="msep">·</span>
-        <span>AWS EC2</span><span class="msep">·</span>
-        <span>Docker</span><span class="msep">·</span>
-        <span>TypeScript</span><span class="msep">·</span>
-        <span>PostgreSQL</span><span class="msep">·</span>
-        <span>FastAPI</span><span class="msep">·</span>
-        <span>Next.js</span><span class="msep">·</span>
-        <span>GitHub Actions</span><span class="msep">·</span>
-        <span>Linux</span><span class="msep">·</span>
-        <span>Supabase</span><span class="msep">·</span>
-        <span>n8n</span><span class="msep">·</span>
-        <span>Spring Boot</span><span class="msep">·</span>
-        <span>Angular</span><span class="msep">·</span>
-        <span>AWS EC2</span><span class="msep">·</span>
-        <span>Docker</span><span class="msep">·</span>
-        <span>TypeScript</span><span class="msep">·</span>
-        <span>PostgreSQL</span><span class="msep">·</span>
-        <span>FastAPI</span><span class="msep">·</span>
-        <span>Next.js</span><span class="msep">·</span>
-        <span>GitHub Actions</span><span class="msep">·</span>
-        <span>Linux</span><span class="msep">·</span>
-        <span>Supabase</span><span class="msep">·</span>
-        <span>n8n</span><span class="msep">·</span>
+        @for (t of marqueeTech; track t) {
+          <span>{{ t }}</span><span class="msep">·</span>
+        }
+        @for (t of marqueeTech; track t) {
+          <span>{{ t }}</span><span class="msep">·</span>
+        }
       </div>
     </div>
-  </main>
+  </section>
 
   <app-about></app-about>
   <app-timeline></app-timeline>
   <app-projects></app-projects>
   <app-skills></app-skills>
   <app-certificates></app-certificates>
-  <app-footer></app-footer>
-}
+</main>
+
+<app-footer></app-footer>

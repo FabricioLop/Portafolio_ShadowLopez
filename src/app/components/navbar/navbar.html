@@ -1,10 +1,10 @@
-<nav class="navbar-wrapper">
+<nav class="navbar-wrapper" [attr.aria-label]="ts.t().nav.aria_main">
   <div class="navbar-container">
-    <div class="logo">
-      <span class="logo-code">&lt;</span>
+    <a href="#top" class="logo" [attr.aria-label]="ts.t().nav.aria_home">
+      <span class="logo-code" aria-hidden="true">&lt;</span>
       <span class="logo-name">ShadowLopez</span>
-      <span class="logo-code"> /&gt;</span>
-    </div>
+      <span class="logo-code" aria-hidden="true"> /&gt;</span>
+    </a>
 
     <!-- Desktop links -->
     <ul class="nav-links desktop-links">
@@ -19,27 +19,50 @@
     <!-- Controls -->
     <div class="nav-controls">
       <!-- Lang switch -->
-      <div class="lang-switch">
-        <button (click)="changeLang('en')" [class.active]="(langService.currentLanguage$ | async) === 'en'">EN</button>
-        <span class="divider">|</span>
-        <button (click)="changeLang('es')" [class.active]="(langService.currentLanguage$ | async) === 'es'">ES</button>
+      <div class="lang-switch" role="group" [attr.aria-label]="ts.t().nav.aria_lang">
+        <button type="button" (click)="changeLang('en')"
+                [class.active]="lang() === 'en'"
+                [attr.aria-pressed]="lang() === 'en'"
+                lang="en">EN</button>
+        <span class="divider" aria-hidden="true">|</span>
+        <button type="button" (click)="changeLang('es')"
+                [class.active]="lang() === 'es'"
+                [attr.aria-pressed]="lang() === 'es'"
+                lang="es">ES</button>
       </div>
 
       <!-- Theme toggle -->
-      <button class="theme-btn" (click)="themeService.toggle()" [title]="themeService.isDark() ? 'Light mode' : 'Dark mode'">
-        {{ themeService.isDark() ? '☀️' : '🌙' }}
+      <button type="button" class="theme-btn" (click)="themeService.toggle()"
+              [attr.aria-label]="themeService.isDark() ? ts.t().nav.aria_theme_light : ts.t().nav.aria_theme_dark"
+              [attr.aria-pressed]="!themeService.isDark()">
+        @if (themeService.isDark()) {
+          <!-- sol -->
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+          </svg>
+        } @else {
+          <!-- luna -->
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>
+          </svg>
+        }
       </button>
 
       <!-- Hamburger (mobile) -->
-      <button class="hamburger" (click)="toggleMenu()" [class.open]="menuOpen()" aria-label="Menu">
-        <span></span><span></span><span></span>
+      <button type="button" class="hamburger" (click)="toggleMenu()" [class.open]="menuOpen()"
+              [attr.aria-label]="menuOpen() ? ts.t().nav.aria_menu_close : ts.t().nav.aria_menu_open"
+              [attr.aria-expanded]="menuOpen()" aria-controls="mobile-menu">
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
       </button>
     </div>
   </div>
 </nav>
 
 <!-- Mobile menu overlay -->
-<div class="mobile-menu" [class.open]="menuOpen()">
+<div id="mobile-menu" class="mobile-menu" [class.open]="menuOpen()" [attr.inert]="menuOpen() ? null : ''">
   <ul>
     <li><a href="#about"        (click)="closeMenu()">{{ ts.t().nav.about }}</a></li>
     <li><a href="#timeline"     (click)="closeMenu()">{{ ts.t().nav.timeline }}</a></li>

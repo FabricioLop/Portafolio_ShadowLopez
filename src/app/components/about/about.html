@@ -11,24 +11,24 @@
       <div class="about-left slide-in-left">
         <div class="avatar-wrapper">
           <div class="avatar-frame">
-            <img src="assets/perfil.jpeg" alt="Fabricio Lopez" class="avatar-img"
-                 loading="lazy" decoding="async">
-            <div class="avatar-tint"></div>
+            <img src="assets/perfil.jpeg" alt="" class="avatar-img"
+                 width="220" height="220" loading="lazy" decoding="async">
+            <div class="avatar-tint" aria-hidden="true"></div>
           </div>
           <div class="avatar-badge">
-            <span class="pulse-dot"></span> {{ ts.t().about.available }}
+            <span class="pulse-dot" aria-hidden="true"></span> {{ ts.t().about.available }}
           </div>
         </div>
 
         <div class="interests-block">
           <p class="interests-label">{{ ts.t().about.interests_label }}</p>
           <div class="chips">
-            <span class="chip">Iced Latte</span>
-            <span class="chip">Anime</span>
-            <span class="chip">Gym</span>
-            <span class="chip">Lectura</span>
-            <span class="chip">Tech</span>
-            <span class="chip">Estrategia</span>
+            <span class="chip">{{ ts.t().about.interest_coffee }}</span>
+            <span class="chip">{{ ts.t().about.interest_anime }}</span>
+            <span class="chip">{{ ts.t().about.interest_gym }}</span>
+            <span class="chip">{{ ts.t().about.interest_reading }}</span>
+            <span class="chip">{{ ts.t().about.interest_tech }}</span>
+            <span class="chip">{{ ts.t().about.interest_strategy }}</span>
           </div>
         </div>
 
@@ -114,17 +114,17 @@
         <span class="stat-number">{{ certs() }}+</span>
         <span class="stat-label">{{ ts.t().about.stat_certs }}</span>
       </div>
-      <div class="stat-divider"></div>
+      <div class="stat-divider" aria-hidden="true"></div>
       <div class="stat-item">
         <span class="stat-number">{{ projects() }}</span>
         <span class="stat-label">{{ ts.t().about.stat_projects }}</span>
       </div>
-      <div class="stat-divider"></div>
+      <div class="stat-divider" aria-hidden="true"></div>
       <div class="stat-item">
         <span class="stat-number">{{ langs() }}</span>
         <span class="stat-label">{{ ts.t().about.stat_langs }}</span>
       </div>
-      <div class="stat-divider"></div>
+      <div class="stat-divider" aria-hidden="true"></div>
       <div class="stat-item">
         <span class="stat-number">{{ months() }}+</span>
         <span class="stat-label">{{ ts.t().about.stat_months }}</span>

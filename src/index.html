@@ -12,8 +12,9 @@
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-  <!-- Theme color (mobile browser chrome) -->
-  <meta name="theme-color" content="#8b5cf6">
+  <!-- Theme color (mobile browser chrome) — ThemeService lo sincroniza al cambiar de tema -->
+  <meta name="theme-color" content="#14112b">
+  <meta name="color-scheme" content="dark light">
 
   <!-- SEO primario -->
   <meta name="description" content="Portafolio de Fabricio Lopez (ShadowLopez) — Software Engineer especializado en Backend y Cloud-native. QA Trainee en Mandu - Visma y estudiante de Ingeniería de Software en la UPC, Lima, Perú.">
@@ -56,12 +57,13 @@
   <!-- Fuentes (carga prioritaria con display=swap) -->
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Devicons — diferido, no bloquea render inicial -->
+  <!-- Devicons — versión fijada (@latest invalida la caché sin avisar) y carga diferida -->
   <link rel="stylesheet" type="text/css"
-        href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
-        media="print" onload="this.media='all'">
+        href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css"
+        media="print" onload="this.media='all'; this.onload=null;">
   <noscript>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css">
   </noscript>
 
   <!-- Preload imagen hero (LCP — Largest Contentful Paint) -->
@@ -115,6 +117,18 @@
       }
     ]
   }
+  </script>
+
+  <!-- Aplica el tema guardado antes del primer pintado (evita el parpadeo al recargar) -->
+  <script>
+    (function () {
+      try {
+        var dark = localStorage.getItem('theme') !== 'light';
+        document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+        var lang = localStorage.getItem('lang');
+        if (lang === 'es' || lang === 'en') document.documentElement.lang = lang;
+      } catch (e) {}
+    })();
   </script>
 </head>
 <body>

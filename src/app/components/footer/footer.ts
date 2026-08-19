@@ -1,80 +1,93 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef, inject, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, DestroyRef, OnInit, computed, effect, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslationService } from '../../services/translation.service';
+
+type FormStatus = 'idle' | 'missing' | 'bad-email' | 'sending' | 'success' | 'error';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [FormsModule],
   templateUrl: './footer.html',
   styleUrl: './footer.css',
 })
-export class Footer implements OnInit, OnDestroy {
-  private cdr = inject(ChangeDetectorRef);
+export class Footer implements OnInit {
   ts = inject(TranslationService);
+  private destroyRef = inject(DestroyRef);
 
   // Contact form
   formName    = signal('');
   formEmail   = signal('');
   formSubject = signal('');
   formMessage = signal('');
-  formStatus  = signal<'idle' | 'sending' | 'success' | 'error'>('idle');
+  formStatus  = signal<FormStatus>('idle');
 
-  // Typing quotes
-  frases: string[] = [
-    "Transformando café y lógica en software de alto impacto.",
-    "Arquitecturando el mañana, un commit a la vez.",
-    "Especialista en resolver problemas complejos con código simple.",
-    "Apasionado por el Backend, enfocado en la escalabilidad.",
-    "Construyendo puentes entre ideas y productos reales.",
-    "Clean Code como filosofía, rendimiento como meta.",
-    "De la idea a la producción: ciclo completo de desarrollo.",
-    "Explorando las fronteras de DevSecOps y Ciberseguridad.",
-    "Junior en experiencia, Senior en actitud y aprendizaje.",
-    "ShadowLopez: Programación con propósito.",
-  ];
+  // Frase con efecto máquina de escribir
+  private quotes = computed(() => this.ts.t().contact.quotes);
+  private charCount = signal(0);
+  private quoteIndex = signal(0);
+  readonly quote = computed(() =>
+    (this.quotes()[this.quoteIndex() % this.quotes().length] ?? '').slice(0, this.charCount())
+  );
 
-  fraseActual: string = '';
-  private indexFrase: number = 0;
-  private loopActivo: boolean = true;
+  private timer?: ReturnType<typeof setTimeout>;
+  private running = true;
+  private readonly reducedMotion =
+    typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
-  ngOnInit() { this.iniciarEfecto(); }
-  ngOnDestroy() { this.loopActivo = false; }
-
-  private async iniciarEfecto() {
-    while (this.loopActivo) {
-      await this.escribirFrase(this.frases[this.indexFrase]);
-      await this.delay(2000);
-      await this.borrarFrase();
-      this.indexFrase = (this.indexFrase + 1) % this.frases.length;
-      await this.delay(500);
-    }
+  constructor() {
+    // Al cambiar de idioma, reinicia la frase en curso para no mezclar textos.
+    effect(() => {
+      this.quotes();
+      this.charCount.set(this.reducedMotion ? Number.MAX_SAFE_INTEGER : 0);
+    });
   }
 
-  private async escribirFrase(texto: string) {
-    for (let i = 0; i <= texto.length; i++) {
-      if (!this.loopActivo) return;
-      this.fraseActual = texto.substring(0, i);
-      this.cdr.detectChanges();
-      await this.delay(50);
-    }
+  ngOnInit() {
+    this.destroyRef.onDestroy(() => {
+      this.running = false;
+      clearTimeout(this.timer);
+    });
+    if (!this.reducedMotion) this.type();
   }
 
-  private async borrarFrase() {
-    const texto = this.fraseActual;
-    for (let i = texto.length; i >= 0; i--) {
-      if (!this.loopActivo) return;
-      this.fraseActual = texto.substring(0, i);
-      this.cdr.detectChanges();
-      await this.delay(30);
+  /** Escribe, espera, borra y pasa a la siguiente frase — sin detectChanges manual. */
+  private type() {
+    if (!this.running) return;
+    const full = this.quotes()[this.quoteIndex() % this.quotes().length] ?? '';
+    const n = this.charCount();
+
+    if (n < full.length) {
+      this.charCount.set(n + 1);
+      this.timer = setTimeout(() => this.type(), 50);
+      return;
     }
+    this.timer = setTimeout(() => this.erase(), 2000);
   }
 
-  private delay(ms: number) { return new Promise(r => setTimeout(r, ms)); }
+  private erase() {
+    if (!this.running) return;
+    const n = this.charCount();
+    if (n > 0) {
+      this.charCount.set(n - 1);
+      this.timer = setTimeout(() => this.erase(), 30);
+      return;
+    }
+    this.quoteIndex.update(i => i + 1);
+    this.timer = setTimeout(() => this.type(), 500);
+  }
 
   async sendForm() {
-    if (!this.formName() || !this.formEmail() || !this.formMessage()) return;
+    if (this.formStatus() === 'sending') return;
+
+    if (!this.formName().trim() || !this.formEmail().trim() || !this.formMessage().trim()) {
+      this.formStatus.set('missing');
+      return;
+    }
+    if (!this.isValidEmail(this.formEmail())) {
+      this.formStatus.set('bad-email');
+      return;
+    }
     this.formStatus.set('sending');
 
     const SERVICE_ID  = 'service_jt940vb';
@@ -82,7 +95,7 @@ export class Footer implements OnInit, OnDestroy {
     const PUBLIC_KEY  = '1tCuiJ8MA0pCKl5MS';
 
     try {
-      const res = await fetch(`https://api.emailjs.com/api/v1.0/email/send`, {
+      const res = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -90,10 +103,10 @@ export class Footer implements OnInit, OnDestroy {
           template_id: TEMPLATE_ID,
           user_id:     PUBLIC_KEY,
           template_params: {
-            from_name:    this.formName(),
-            from_email:   this.formEmail(),
-            subject:      this.formSubject(),
-            message:      this.formMessage(),
+            from_name:  this.formName(),
+            from_email: this.formEmail(),
+            subject:    this.formSubject(),
+            message:    this.formMessage(),
           }
         })
       });
@@ -107,5 +120,9 @@ export class Footer implements OnInit, OnDestroy {
       this.formSubject.set(''); this.formMessage.set('');
     }
     setTimeout(() => this.formStatus.set('idle'), 5000);
+  }
+
+  private isValidEmail(value: string): boolean {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value.trim());
   }
 }

@@ -4,7 +4,7 @@
   <!-- En Desarrollo -->
   <div class="project-group">
     <div class="group-header">
-      <span class="group-dot wip"></span>
+      <span class="group-dot wip" aria-hidden="true"></span>
       <span class="group-label">{{ ts.t().projects.group_wip }}</span>
     </div>
 
@@ -20,10 +20,10 @@
           <p class="role">{{ ts.t().projects.role_smartfinance }}</p>
           <p class="description">{{ ts.t().projects.desc_smartfinance }}</p>
           <div class="feature-pills">
-            <span class="pill">Bot WhatsApp + Gemini IA</span>
-            <span class="pill">Automatización n8n</span>
-            <span class="pill">AWS EC2</span>
-            <span class="pill">Predicciones Python</span>
+            <span class="pill">{{ ts.t().projects.pill_bot }}</span>
+            <span class="pill">{{ ts.t().projects.pill_n8n }}</span>
+            <span class="pill">{{ ts.t().projects.pill_ec2 }}</span>
+            <span class="pill">{{ ts.t().projects.pill_predictions }}</span>
           </div>
           <div class="tech-stack">
             <span>Angular</span><span>Spring Boot</span><span>Python</span>
@@ -32,8 +32,8 @@
           </div>
         </div>
         <div class="project-links">
-          <a href="https://smart-finance-api-production-42f4.up.railway.app/swagger-ui/index.html#/" target="_blank" class="btn-live">{{ ts.t().projects.btn_api }}</a>
-          <a href="https://github.com/SmartFinance-Core" target="_blank" class="btn-github-small">GitHub</a>
+          <a href="https://smart-finance-api-production-42f4.up.railway.app/swagger-ui/index.html#/" target="_blank" rel="noopener noreferrer" class="btn-live" aria-label="SmartFinance-Core — API">{{ ts.t().projects.btn_api }}</a>
+          <a href="https://github.com/SmartFinance-Core" target="_blank" rel="noopener noreferrer" class="btn-github-small" aria-label="SmartFinance-Core — GitHub">GitHub</a>
         </div>
       </div>
 
@@ -51,7 +51,7 @@
           </div>
         </div>
         <div class="project-links">
-          <a href="https://github.com/EMSafeUPC" target="_blank" class="btn-github-small">GitHub</a>
+          <a href="https://github.com/EMSafeUPC" target="_blank" rel="noopener noreferrer" class="btn-github-small" aria-label="EMSafe — GitHub">GitHub</a>
         </div>
       </div>
 
@@ -61,7 +61,7 @@
   <!-- Terminados & Desplegados -->
   <div class="project-group">
     <div class="group-header">
-      <span class="group-dot done"></span>
+      <span class="group-dot done" aria-hidden="true"></span>
       <span class="group-label">{{ ts.t().projects.group_done }}</span>
     </div>
 
@@ -81,8 +81,8 @@
           </div>
         </div>
         <div class="project-links">
-          <a href="https://hogar-fin-web-app.vercel.app/" target="_blank" class="btn-live">{{ ts.t().projects.btn_live }}</a>
-          <a href="https://github.com/Finanzas-e-Ingeneria-Economica/HogarFin-Web-App" target="_blank" class="btn-github-small">GitHub</a>
+          <a href="https://hogar-fin-web-app.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-live" aria-label="HogarFin — Live">{{ ts.t().projects.btn_live }}</a>
+          <a href="https://github.com/Finanzas-e-Ingeneria-Economica/HogarFin-Web-App" target="_blank" rel="noopener noreferrer" class="btn-github-small" aria-label="HogarFin — GitHub">GitHub</a>
         </div>
       </div>
 
@@ -100,7 +100,7 @@
           </div>
         </div>
         <div class="project-links">
-          <a href="https://github.com/RingenSoft" target="_blank" class="btn-github-small full">GitHub</a>
+          <a href="https://github.com/RingenSoft" target="_blank" rel="noopener noreferrer" class="btn-github-small full" aria-label="RingentSoft — GitHub">GitHub</a>
         </div>
       </div>
 
